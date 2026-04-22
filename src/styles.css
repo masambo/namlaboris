@@ -241,7 +241,8 @@
 
   .service-tile__icon,
   .insight-panel__icon {
-    @apply inline-flex h-11 w-11 items-center justify-center rounded-md surface-tint text-primary;
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-md text-primary;
+    background-color: var(--surface-tint);
   }
 
   .intelligence-grid {
@@ -256,7 +257,9 @@
   }
 
   .intelligence-card--strong {
-    @apply surface-strong border-border/20;
+    @apply border-border/20;
+    background-color: var(--surface-strong);
+    color: var(--surface-strong-foreground);
     background-image: linear-gradient(160deg, color-mix(in oklab, var(--color-primary) 45%, transparent), transparent 65%);
   }
 
@@ -293,7 +296,8 @@
   }
 
   .phone-action--hero {
-    @apply surface-strong text-primary-foreground;
+    @apply text-primary-foreground;
+    background-color: var(--surface-strong);
   }
 
   .phone-action--quiet {
