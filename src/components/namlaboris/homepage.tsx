@@ -22,7 +22,6 @@ import namLaborisLogo from "@/assets/namlaboris-logo.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 
 const navigationItems = ["Home", "ADR Cases", "Compliance Tools", "Training Hub", "Analytics"];
 
