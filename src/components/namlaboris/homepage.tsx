@@ -21,6 +21,15 @@ import {
   TrendingUp,
   Users,
   Zap,
+  Star,
+  Bell,
+  Calendar,
+  Download,
+  Search,
+  Settings,
+  LayoutDashboard,
+  FolderOpen,
+  BookOpen,
 } from "lucide-react";
 
 import namLaborisLogo from "@/assets/namlaboris-logo.png";
