@@ -1,94 +1,58 @@
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import {
-  Apple,
+  Activity,
   ArrowRight,
-  BookOpenText,
   Bot,
-  BriefcaseBusiness,
-  Building2,
+  Briefcase,
   ChartNoAxesCombined,
+  CheckCircle2,
   ChevronRight,
-  Download,
+  Clock,
+  FileSearch,
   Gavel,
   GraduationCap,
   Landmark,
   LibraryBig,
-  Play,
-  ScanSearch,
+  PlayCircle,
   Scale,
   ShieldCheck,
+  Sparkles,
+  TrendingUp,
+  Users,
+  Zap,
 } from "lucide-react";
 
 import namLaborisLogo from "@/assets/namlaboris-logo.png";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-const navigationItems = ["Home", "ADR Cases", "Compliance Tools", "Training Hub", "Analytics"];
+const navigationItems = [
+  { label: "Home", href: "#top", active: true },
+  { label: "ADR Cases", href: "#modules" },
+  { label: "Compliance", href: "#compliance" },
+  { label: "Training", href: "#training" },
+  { label: "Pricing", href: "#pricing" },
+];
+
+const heroStats = [
+  { value: "12K+", label: "Cases Resolved" },
+  { value: "98%", label: "Compliance Score" },
+  { value: "16", label: "SADC Jurisdictions" },
+];
+
+const quickActions = [
+  { title: "File a Dispute", subtitle: "Start a Case", icon: Gavel, accent: "gold" },
+  { title: "Get Legal Advice", subtitle: "Ask an Expert", icon: Bot, accent: "copper" },
+  { title: "Compliance Check", subtitle: "Audit Your Policies", icon: ShieldCheck, accent: "mint" },
+];
 
 const platformModules = [
-  {
-    title: "AI Legal Assistant",
-    summary: "Structured labour law guidance for disciplinary, grievance, and arbitration preparation.",
-    icon: Bot,
-  },
-  {
-    title: "ADR Cases",
-    summary: "Cross-jurisdiction case research from Namibia and wider SADC labour institutions.",
-    icon: Scale,
-  },
-  {
-    title: "Compliance Tools",
-    summary: "HR compliance audits, policy alignment checks, and risk-based remediation guidance.",
-    icon: BriefcaseBusiness,
-  },
-  {
-    title: "Policy Builder",
-    summary: "Generate compliant workplace policy frameworks aligned with labour governance standards.",
-    icon: LibraryBig,
-  },
-  {
-    title: "Training Hub",
-    summary: "Professional learning programs delivered online, via webinars, and in-house sessions.",
-    icon: Gavel,
-  },
-  {
-    title: "Analytics",
-    summary: "Dispute trends, risk indexes, and workforce stability signals for informed decisions.",
-    icon: ChartNoAxesCombined,
-  },
-];
-
-const serviceHighlights = [
-  { title: "File a Dispute", summary: "Open a structured case and manage hearings.", icon: Gavel },
-  { title: "Get Legal Advice", summary: "Ask labour law questions with guided reasoning.", icon: Bot },
-  { title: "Compliance Check", summary: "Audit contracts, policy alignment, and statutory risk.", icon: ShieldCheck },
-];
-
-const intelligencePanels = [
-  {
-    title: "Live Case Tracker",
-    summary: "Current status, hearing readiness, and dispute milestones in one place.",
-    cta: "View Cases",
-    tone: "soft",
-  },
-  {
-    title: "Labour Law Insights",
-    summary: "Analytics, reports, and sector signals for better workplace decisions.",
-    cta: "View Reports",
-    tone: "strong",
-  },
-  {
-    title: "Upcoming Hearing",
-    summary: "Prepare impartial decisions with documents, timelines, and action prompts.",
-    cta: "Learn More",
-    tone: "soft",
-  },
-  {
-    title: "Neutrality & Fairness",
-    summary: "Guided principles for procedural fairness and governance discipline.",
-    cta: "Learn More",
-    tone: "soft",
-  },
+  { title: "AI Legal Assistant", desc: "Structured labour-law reasoning for disciplinary, grievance, and arbitration prep.", icon: Bot, tag: "AI Powered" },
+  { title: "ADR Case Management", desc: "Cross-jurisdiction case research from Namibia and the wider SADC labour ecosystem.", icon: Scale, tag: "Live Tracker" },
+  { title: "Compliance Suite", desc: "HR audits, contract review, policy alignment, and risk-based remediation guidance.", icon: ShieldCheck, tag: "Real-time" },
+  { title: "Policy Builder", desc: "Generate compliant workplace policies aligned with labour-governance standards.", icon: LibraryBig, tag: "Templates" },
+  { title: "Training Hub", desc: "Online, webinar, and in-house programs for hearings, discipline & grievance practice.", icon: GraduationCap, tag: "Accredited" },
+  { title: "Workforce Analytics", desc: "Dispute trends, risk indexes, and workforce stability signals for better decisions.", icon: ChartNoAxesCombined, tag: "Insights" },
 ];
 
 const trainingCourses = [
@@ -101,388 +65,670 @@ const trainingCourses = [
 ];
 
 const knowledgeResources = [
-  "Labour Act Interpretation Guides",
-  "Arbitration Awards",
-  "Labour Court Decisions",
-  "SADC Labour Law Comparative Research",
-  "ILO Labour Standards",
-  "HR Governance Research",
-];
-
-const institutionalItems = [
-  "Labour policy updates",
-  "Regulatory developments",
-  "Labour market research",
-  "Institutional reports",
-  "Legislative amendments",
+  { label: "Labour Act Interpretation Guides", icon: Landmark },
+  { label: "Arbitration Awards Library", icon: Gavel },
+  { label: "Labour Court Decisions", icon: Scale },
+  { label: "SADC Comparative Research", icon: FileSearch },
+  { label: "ILO Labour Standards", icon: ShieldCheck },
+  { label: "HR Governance Research", icon: Briefcase },
 ];
 
 const membershipPlans = [
-  { name: "Corporate", audience: "Employers & Companies", fee: "N$2,850 / month" },
-  { name: "Professional", audience: "HR Practitioners & Consultants", fee: "N$3,650 / month" },
-  { name: "Institutional", audience: "Universities & Government Bodies", fee: "N$5,500 / month" },
+  { name: "Corporate", audience: "Employers & Companies", fee: "N$2,850", per: "/month", features: ["Case management dashboard", "Policy builder access", "Quarterly compliance audit", "5 user seats"], featured: false },
+  { name: "Professional", audience: "HR Practitioners & Consultants", fee: "N$3,650", per: "/month", features: ["Everything in Corporate", "AI Legal Assistant", "Training Hub access", "ADR case research", "10 user seats"], featured: true },
+  { name: "Institutional", audience: "Universities & Government", fee: "N$5,500", per: "/month", features: ["Everything in Professional", "Workforce analytics", "API access", "Custom integrations", "Unlimited seats"], featured: false },
 ];
+
+const partners = ["Ministry of Labour", "Office of the Labour Commissioner", "SADC", "ILO", "Namibian Employers Federation", "Law Society of Namibia"];
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: (i: number = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.08, ease: "easeOut" } }),
+};
 
 export function NamLaborisHomePage() {
   return (
-    <main className="page-frame min-h-screen pb-16">
-      <header className="border-b border-border/70 bg-card/90 backdrop-blur">
+    <main className="relative min-h-screen overflow-hidden">
+      {/* Ambient glow */}
+      <div className="glow-orb" style={{ top: "-120px", left: "-80px", width: "420px", height: "420px", background: "var(--brand-gold)" }} />
+      <div className="glow-orb" style={{ top: "10%", right: "-100px", width: "380px", height: "380px", background: "var(--brand-copper)", opacity: 0.35 }} />
+      <div className="glow-orb" style={{ top: "60%", left: "30%", width: "500px", height: "500px", background: "oklch(0.62 0.14 220)", opacity: 0.25 }} />
+
+      {/* NAV */}
+      <header className="relative z-30 border-b border-white/5 backdrop-blur-xl">
         <div className="section-wrap flex items-center justify-between py-4">
           <div className="flex items-center gap-3">
-            <img src={namLaborisLogo} alt="NamLaboris Agency logo" className="h-11 w-11 rounded-md object-cover" />
+            <div className="relative">
+              <img src={namLaborisLogo} alt="NamLaboris logo" className="h-10 w-10 rounded-lg object-cover" />
+              <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-[var(--brand-gold)] ring-2 ring-[var(--background)]" />
+            </div>
             <div>
-              <p className="text-sm font-bold text-foreground">NamLaboris</p>
-              <p className="text-xs text-muted-foreground">Labour Governance Intelligence</p>
+              <p className="font-display text-base font-bold leading-none text-foreground">NamLaboris</p>
+              <p className="text-[0.65rem] uppercase tracking-[0.18em] text-foreground/50">Labour Intelligence</p>
             </div>
           </div>
-          <nav className="hidden items-center gap-7 lg:flex">
-            {navigationItems.map((item, index) => (
-              <a
-                key={item}
-                href={index === 0 ? "#top" : `#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                className="text-sm font-semibold text-foreground/88 transition-colors hover:text-primary"
-              >
-                {item}
+
+          <nav className="hidden items-center gap-8 lg:flex">
+            {navigationItems.map((item) => (
+              <a key={item.label} href={item.href} className={`nav-link ${item.active ? "active" : ""}`}>
+                {item.label}
               </a>
             ))}
           </nav>
-          <div className="hidden items-center gap-2 md:flex">
-            <Button variant="quiet" size="sm">
-              Member Login
-            </Button>
-            <Button variant="hero" size="sm">
-              Join Platform
-            </Button>
+
+          <div className="flex items-center gap-2">
+            <Button variant="glass" size="sm" className="hidden sm:inline-flex">Login</Button>
+            <Button variant="gold" size="sm">Register <ArrowRight className="size-4" /></Button>
           </div>
         </div>
       </header>
 
-      <section id="top" className="section-wrap pt-8 sm:pt-12">
-        <div className="hero-panel refined-hero grid gap-8 p-5 sm:p-8 lg:grid-cols-[1.08fr_0.92fr] lg:p-10">
-          <div className="space-y-6">
-            <span className="brand-kicker">Namibia • SADC Labour Intelligence</span>
-            <h1 className="max-w-3xl text-4xl leading-tight text-foreground sm:text-5xl lg:text-6xl">
-              Labour governance, ADR support, and compliance intelligence in one working platform.
-            </h1>
-            <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              NamLaboris gives employers, HR practitioners, consultants, and institutions a disciplined digital
-              workspace for case tracking, AI legal reasoning, policy control, training delivery, and labour
-              intelligence across Namibia and the wider SADC region.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button variant="hero" size="xl">
-                Start Membership Application
-              </Button>
-              <Button variant="amber" size="xl">
-                View Platform Structure <ArrowRight className="size-4" />
-              </Button>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {serviceHighlights.map((item) => {
-                const Icon = item.icon;
+      {/* HERO */}
+      <section id="top" className="relative grid-bg">
+        <div className="section-wrap relative pt-12 pb-20 lg:pt-20 lg:pb-28">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+            {/* LEFT */}
+            <div className="relative z-10">
+              <motion.div initial="hidden" animate="show" variants={fadeUp} custom={0}>
+                <span className="brand-pill">
+                  <Sparkles className="size-3" />
+                  AI-Powered Labour Law & ADR
+                </span>
+              </motion.div>
 
-                return (
-                  <article key={item.title} className="service-tile">
-                    <div className="service-tile__icon">
-                      <Icon className="size-5" />
-                    </div>
-                    <div>
-                      <p className="text-lg font-semibold text-foreground">{item.title}</p>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.summary}</p>
-                    </div>
-                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                      Explore <ChevronRight className="size-4" />
-                    </span>
-                  </article>
-                );
-              })}
-            </div>
+              <motion.h1
+                initial="hidden" animate="show" variants={fadeUp} custom={1}
+                className="mt-6 font-display text-5xl leading-[1.05] text-foreground sm:text-6xl lg:text-7xl"
+              >
+                Welcome to{" "}
+                <span className="gold-text">NamLaboris</span>
+                <span className="block text-foreground/85 text-3xl sm:text-4xl lg:text-5xl mt-3 font-display font-medium italic">
+                  Labour governance, intelligently engineered.
+                </span>
+              </motion.h1>
 
-            <div className="grid gap-4 lg:grid-cols-[1.18fr_0.82fr]">
-              <div className="intelligence-grid">
-                {intelligencePanels.map((panel) => (
-                  <article
-                    key={panel.title}
-                    className={panel.tone === "strong" ? "intelligence-card intelligence-card--strong" : "intelligence-card"}
-                  >
-                    <div>
-                      <p className="text-2xl font-semibold text-foreground">{panel.title}</p>
-                      <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">{panel.summary}</p>
-                    </div>
-                    <Button variant={panel.tone === "strong" ? "hero" : "quiet"} size="sm" className="w-fit">
-                      {panel.cta}
-                    </Button>
-                  </article>
+              <motion.p
+                initial="hidden" animate="show" variants={fadeUp} custom={2}
+                className="mt-7 max-w-xl text-base leading-relaxed text-foreground/70 sm:text-lg"
+              >
+                The all-in-one platform for employers, HR practitioners, and institutions across Namibia & SADC. File disputes, run compliance audits, build policies, and access AI legal reasoning — all in one disciplined workspace.
+              </motion.p>
+
+              <motion.div
+                initial="hidden" animate="show" variants={fadeUp} custom={3}
+                className="mt-8 flex flex-wrap gap-3"
+              >
+                <Button variant="gold" size="xl">
+                  Join the Future of Labour Law
+                  <ArrowRight className="size-4" />
+                </Button>
+                <Button variant="glass" size="xl">
+                  <PlayCircle className="size-4" />
+                  Watch Demo
+                </Button>
+              </motion.div>
+
+              {/* Trust badges */}
+              <motion.div
+                initial="hidden" animate="show" variants={fadeUp} custom={4}
+                className="mt-8 flex flex-wrap items-center gap-2"
+              >
+                {["Trusted", "Neutral", "AI-Driven", "SADC Compliant"].map((t) => (
+                  <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-foreground/70">
+                    <CheckCircle2 className="size-3 text-[var(--brand-gold)]" />
+                    {t}
+                  </span>
                 ))}
-              </div>
+              </motion.div>
 
-              <aside className="phone-showcase">
-                <div className="phone-shell">
-                  <div className="phone-notch" />
+              {/* Stats */}
+              <motion.div
+                initial="hidden" animate="show" variants={fadeUp} custom={5}
+                className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-7"
+              >
+                {heroStats.map((s) => (
+                  <div key={s.label}>
+                    <p className="font-display text-3xl font-semibold gold-text">{s.value}</p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.14em] text-foreground/50">{s.label}</p>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* RIGHT — Phone + floating cards */}
+            <div className="relative mx-auto flex h-[640px] w-full max-w-[520px] items-center justify-center">
+              {/* Decorative orbit */}
+              <div className="absolute inset-10 rounded-full border border-white/5" style={{ animation: "orbit-slow 40s linear infinite" }}>
+                <span className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--brand-gold)] shadow-[0_0_20px_var(--brand-gold)]" />
+              </div>
+              <div className="absolute inset-20 rounded-full border border-white/5" style={{ animation: "orbit-slow 60s linear infinite reverse" }} />
+
+              {/* Phone */}
+              <motion.div
+                initial={{ opacity: 0, y: 40, rotate: -4 }}
+                animate={{ opacity: 1, y: 0, rotate: -2 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="relative z-10"
+                style={{ animation: "float-tilt 7s ease-in-out infinite" }}
+              >
+                <div className="phone-mock">
                   <div className="phone-screen">
-                    <div>
-                      <p className="text-2xl font-semibold text-foreground">Hello, Anna.</p>
-                      <p className="mt-1 text-sm text-muted-foreground">How can we assist you today?</p>
+                    {/* Status bar */}
+                    <div className="absolute top-3 left-6 right-6 flex items-center justify-between text-[0.6rem] font-semibold text-foreground/70 z-10">
+                      <span>9:41</span>
+                      <span className="flex items-center gap-1">
+                        <span className="live-dot" /> LIVE
+                      </span>
                     </div>
 
-                    <div className="space-y-3">
-                      {[
-                        { label: "File a Dispute", variant: "hero", icon: Gavel },
-                        { label: "Get Legal Help", variant: "quiet", icon: ScanSearch },
-                        { label: "Compliance Check", variant: "quiet", icon: ShieldCheck },
-                        { label: "Training Hub", variant: "amber", icon: GraduationCap },
-                      ].map((action) => {
-                        const Icon = action.icon;
+                    <div>
+                      <p className="text-xs text-foreground/60">Good morning,</p>
+                      <p className="font-display text-2xl font-semibold text-foreground">Anna Shilongo</p>
+                      <p className="mt-1 text-xs text-foreground/60">How can we assist you today?</p>
+                    </div>
 
+                    <div className="mt-5 space-y-2.5">
+                      {[
+                        { label: "File a Dispute", icon: Gavel, cls: "phone-action--gold" },
+                        { label: "Get Legal Help", icon: Bot, cls: "phone-action--navy" },
+                        { label: "Compliance Check", icon: ShieldCheck, cls: "phone-action--copper" },
+                        { label: "Training Hub", icon: GraduationCap, cls: "phone-action--mint" },
+                      ].map((a, i) => {
+                        const Icon = a.icon;
                         return (
-                          <button key={action.label} className={`phone-action phone-action--${action.variant}`} type="button">
-                            <span className="inline-flex items-center gap-3">
+                          <motion.button
+                            key={a.label}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.6 + i * 0.12, duration: 0.5 }}
+                            className={`phone-action ${a.cls}`}
+                            type="button"
+                          >
+                            <span className="inline-flex items-center gap-2.5">
                               <Icon className="size-4" />
-                              {action.label}
+                              {a.label}
                             </span>
                             <ChevronRight className="size-4" />
-                          </button>
+                          </motion.button>
                         );
                       })}
                     </div>
 
-                    <div className="phone-panel">
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Upcoming Hearing</p>
-                      <p className="mt-3 text-lg font-semibold text-foreground">Smith vs. XYZ Ltd.</p>
-                      <p className="mt-1 text-sm text-muted-foreground">Hearing tomorrow at 10:00 AM</p>
-                      <Button variant="quiet" size="sm" className="mt-4 w-full">
-                        View Details
-                      </Button>
-                    </div>
+                    {/* Upcoming Hearing */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.2, duration: 0.5 }}
+                      className="mt-5 rounded-2xl border border-white/10 bg-white/[0.04] p-4"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-[var(--brand-gold-soft)]">
+                          Upcoming Hearing
+                        </span>
+                        <span className="pulse-dot" />
+                      </div>
+                      <p className="mt-2 font-display text-base font-semibold text-foreground">Smith vs. XYZ Ltd.</p>
+                      <p className="mt-1 flex items-center gap-1.5 text-xs text-foreground/60">
+                        <Clock className="size-3" /> Tomorrow • 10:00 AM
+                      </p>
+                    </motion.div>
                   </div>
                 </div>
+              </motion.div>
 
-                <div className="store-buttons">
-                  <Button variant="quiet" size="lg" className="store-button">
-                    <Apple className="size-5" />
-                    <span>
-                      <small className="block text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                        Download on the
-                      </small>
-                      App Store
-                    </span>
-                  </Button>
-                  <Button variant="hero" size="lg" className="store-button">
-                    <Play className="size-5" />
-                    <span>
-                      <small className="block text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-primary-foreground/70">
-                        Get it on
-                      </small>
-                      Google Play
-                    </span>
-                  </Button>
+              {/* Floating mini-cards */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.7 }}
+                className="absolute -left-2 top-12 hidden md:block"
+              >
+                <div className="glass-card-strong floating-card flex items-center gap-3 !p-4" style={{ animationDelay: "1s" }}>
+                  <div className="icon-chip h-10 w-10">
+                    <TrendingUp className="size-4" />
+                  </div>
+                  <div>
+                    <p className="text-[0.6rem] uppercase tracking-[0.14em] text-foreground/60">Resolution Rate</p>
+                    <p className="font-display text-xl font-semibold gold-text">+24%</p>
+                  </div>
                 </div>
-              </aside>
-            </div>
+              </motion.div>
 
-            <div className="grid gap-3 sm:grid-cols-3">
-              <article className="metric-card">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Registration</p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">N$1,500</p>
-              </article>
-              <article className="metric-card">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Jurisdictions</p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">SADC + Namibia</p>
-              </article>
-              <article className="metric-card">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Coverage</p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">ADR • HR • Compliance</p>
-              </article>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1, duration: 0.7 }}
+                className="absolute -right-2 top-32 hidden md:block"
+              >
+                <div className="glass-card floating-card !p-4" style={{ animationDelay: "0.5s", maxWidth: "200px" }}>
+                  <div className="flex items-center gap-2">
+                    <Activity className="size-4 text-[var(--brand-gold)]" />
+                    <p className="text-xs font-semibold text-foreground">Live Cases</p>
+                  </div>
+                  <div className="mt-3 space-y-2">
+                    {[{ l: "Active", v: 78 }, { l: "Pending", v: 45 }, { l: "Resolved", v: 92 }].map((s) => (
+                      <div key={s.l}>
+                        <div className="flex justify-between text-[0.6rem] text-foreground/60">
+                          <span>{s.l}</span><span>{s.v}%</span>
+                        </div>
+                        <div className="stat-bar mt-1"><span style={{ width: `${s.v}%` }} /></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.7 }}
+                className="absolute bottom-2 right-4 hidden md:block"
+              >
+                <div className="glass-card floating-card flex items-center gap-3 !p-4" style={{ animationDelay: "2s" }}>
+                  <div className="icon-chip-mint icon-chip h-10 w-10">
+                    <Bot className="size-4" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-foreground">AI Assistant</p>
+                    <p className="text-[0.65rem] text-foreground/60">Drafting brief...</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* App store buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-16 flex flex-wrap items-center justify-center gap-4"
+          >
+            <p className="w-full text-center text-xs uppercase tracking-[0.18em] text-foreground/50">Download the NamLaboris app</p>
+            <a href="#" className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 backdrop-blur-md transition-all hover:border-[var(--brand-gold)]/40 hover:bg-white/[0.08]">
+              <svg viewBox="0 0 24 24" className="size-7 fill-foreground" aria-hidden><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" /></svg>
+              <div className="text-left">
+                <p className="text-[0.6rem] uppercase tracking-wider text-foreground/60">Download on the</p>
+                <p className="font-display text-base font-semibold text-foreground">App Store</p>
+              </div>
+            </a>
+            <a href="#" className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 backdrop-blur-md transition-all hover:border-[var(--brand-gold)]/40 hover:bg-white/[0.08]">
+              <svg viewBox="0 0 24 24" className="size-7" aria-hidden>
+                <path d="M3.6 1.7a2 2 0 0 0-1 1.7v17.2c0 .7.4 1.3 1 1.7L13 12 3.6 1.7z" fill="#34A853"/>
+                <path d="M16.8 8.6L13.7 12l3.1 3.4 4.2-2.4c1.3-.7 1.3-2.6 0-3.3l-4.2-2.4z" fill="#FBBC04"/>
+                <path d="M3.6 22.3l9.4-10.3-2.5-2.7-7 8.7c-.1 1.7.7 4 .1 4.3z" fill="#EA4335"/>
+                <path d="M3.6 1.7l10.1 11.1 3.1-3.4L4.6.7c-.4-.2-.7 0-1 1z" fill="#4285F4"/>
+              </svg>
+              <div className="text-left">
+                <p className="text-[0.6rem] uppercase tracking-wider text-foreground/60">Get it on</p>
+                <p className="font-display text-base font-semibold text-foreground">Google Play</p>
+              </div>
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Partners marquee */}
+        <div className="border-y border-white/5 bg-black/20 py-6 backdrop-blur-md">
+          <div className="overflow-hidden">
+            <div className="marquee gap-14 whitespace-nowrap text-sm font-medium uppercase tracking-[0.2em] text-foreground/40">
+              {[...partners, ...partners].map((p, i) => (
+                <span key={i} className="flex items-center gap-14">
+                  {p}
+                  <span className="size-1.5 rounded-full bg-[var(--brand-gold)]/50" />
+                </span>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="adr-cases" className="section-wrap pt-14">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Core Platform Modules</p>
-            <h2 className="mt-2 text-3xl text-foreground">Operational tools built around labour governance.</h2>
-          </div>
-          <Badge variant="outline" className="border-border/80 px-3 py-1 text-xs tracking-[0.1em] text-muted-foreground">
-            Real workflow depth, not demo features.
-          </Badge>
-        </div>
+      {/* PLATFORM MODULES */}
+      <section id="modules" className="relative py-24">
+        <div className="section-wrap">
+          <motion.div
+            initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
+            className="mx-auto max-w-2xl text-center"
+          >
+            <span className="brand-pill"><Zap className="size-3" /> Core Platform</span>
+            <h2 className="mt-5 font-display text-4xl text-foreground sm:text-5xl">
+              Operational tools built for{" "}
+              <span className="gold-text">labour governance.</span>
+            </h2>
+            <p className="mt-4 text-foreground/65">Six interconnected modules covering the full workflow — from intake to award.</p>
+          </motion.div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {platformModules.map((module) => {
-            const Icon = module.icon;
-
-            return (
-              <Card key={module.title} className="feature-card rounded-md">
-                <CardHeader className="p-0">
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md surface-tint text-primary">
-                    <Icon className="size-5" />
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {platformModules.map((m, i) => {
+              const Icon = m.icon;
+              return (
+                <motion.article
+                  key={m.title}
+                  initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} custom={i}
+                  className="feature-tile"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="icon-chip"><Icon className="size-5" /></div>
+                    <span className="text-[0.6rem] uppercase tracking-[0.16em] text-[var(--brand-gold-soft)]">{m.tag}</span>
                   </div>
-                  <CardTitle className="text-xl text-foreground">{module.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0 pt-3">
-                  <CardDescription className="text-sm leading-relaxed text-muted-foreground">{module.summary}</CardDescription>
-                </CardContent>
-              </Card>
-            );
-          })}
+                  <h3 className="mt-5 font-display text-xl text-foreground">{m.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/65">{m.desc}</p>
+                  <div className="mt-5 flex items-center gap-1.5 text-xs font-semibold text-[var(--brand-gold-soft)]">
+                    Explore module <ChevronRight className="size-3.5" />
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      <section id="compliance-tools" className="section-band mt-14">
-        <div className="section-wrap py-12">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="space-y-5">
-              <Badge variant="secondary" className="bg-secondary/40 text-secondary-foreground">
-                Compliance Dashboard
-              </Badge>
-              <h2 className="text-3xl text-foreground">A working layer for legal alignment, risk control, and disciplinary readiness.</h2>
-              <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
-                The platform structure calls for compliance risk scoring, HR governance maturity tracking, policy checks,
-                and guided investigation workflows. This section restores that depth instead of presenting only high-level marketing copy.
+      {/* COMPLIANCE / DASHBOARD */}
+      <section id="compliance" className="relative py-24">
+        <div className="section-wrap">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
+              <span className="brand-pill"><ShieldCheck className="size-3" /> Compliance Suite</span>
+              <h2 className="mt-5 font-display text-4xl text-foreground sm:text-5xl">
+                A working layer for{" "}
+                <span className="gold-text">legal alignment</span> & risk control.
+              </h2>
+              <p className="mt-5 text-foreground/65">
+                Continuous compliance scoring, HR governance maturity tracking, automated policy checks, and guided investigation workflows. Built around real procedures — not marketing demos.
               </p>
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
                 {[
                   "HR Compliance Audit",
                   "Employment Contract Review",
                   "Policy Compliance Check",
                   "Disciplinary Process Builder",
-                  "Employment Equity Compliance",
-                  "Workplace Investigation Guide",
+                  "Employment Equity",
+                  "Investigation Workflow",
                 ].map((item) => (
-                  <div key={item} className="list-chip">
-                    <ShieldCheck className="size-4 text-primary" />
-                    <span>{item}</span>
+                  <div key={item} className="flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.03] px-4 py-3">
+                    <CheckCircle2 className="size-4 text-[var(--brand-gold)]" />
+                    <span className="text-sm text-foreground/85">{item}</span>
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="insight-stack">
-              <article className="insight-panel">
-                <div className="insight-panel__icon">
-                  <Landmark className="size-5" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold text-foreground">Cross-jurisdiction ADR research</p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    Research awards from Namibia, South Africa, Zambia, Botswana, Zimbabwe, and wider SADC institutions.
-                  </p>
-                </div>
-              </article>
-              <article className="insight-panel">
-                <div className="insight-panel__icon">
-                  <Building2 className="size-5" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold text-foreground">Membership onboarding workflow</p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    Registration, reference generation, invoice automation, portal setup, and confidentiality-first intake.
-                  </p>
-                </div>
-              </article>
-              <article className="insight-panel">
-                <div className="insight-panel__icon">
-                  <Download className="size-5" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold text-foreground">Knowledge exports and guided outputs</p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    Export legal research, generate compliant policy drafts, and surface practical recommendations for teams.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="training-hub" className="section-wrap pt-14">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Training Hub</p>
-            <h2 className="mt-2 text-3xl text-foreground">Programmes built for hearings, discipline, grievance, and labour governance practice.</h2>
-          </div>
-          <Badge variant="outline" className="border-border/80 px-3 py-1 text-xs tracking-[0.1em] text-muted-foreground">
-            Online • Webinar • In-house • Distance learning
-          </Badge>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {trainingCourses.map((course) => (
-            <article key={course} className="feature-card rounded-md">
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md surface-amber text-accent-foreground">
-                <GraduationCap className="size-5" />
+              <div className="mt-8 flex gap-3">
+                <Button variant="gold" size="lg">Start Free Audit</Button>
+                <Button variant="glass" size="lg">View Sample Report</Button>
               </div>
-              <p className="text-xl font-semibold text-foreground">{course}</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Progressive module delivery for applied workplace capability building.</p>
-            </article>
-          ))}
-        </div>
-      </section>
+            </motion.div>
 
-      <section id="analytics" className="section-wrap pt-14">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <article className="surface-strong rounded-md border border-border/30 p-6 sm:p-8">
-            <Badge variant="secondary" className="bg-secondary/30 text-secondary-foreground">
-              Knowledge Centre
-            </Badge>
-            <h2 className="mt-5 text-3xl text-secondary">Research depth for labour law work.</h2>
-            <p className="mt-4 text-sm leading-relaxed text-secondary/85">
-              Labour Act interpretation guides, arbitration awards, labour court decisions, ILO standards, and comparative SADC labour research in one reference environment.
-            </p>
-            <div className="mt-6 grid gap-3">
-              {knowledgeResources.map((resource) => (
-                <div key={resource} className="knowledge-row">
-                  <BookOpenText className="size-4 text-accent" />
-                  <span>{resource}</span>
+            {/* Live dashboard mock */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="glass-card-strong overflow-hidden">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="live-dot" />
+                    <span className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground/70">Live Compliance Score</span>
+                  </div>
+                  <span className="text-xs text-foreground/50">Updated just now</span>
                 </div>
-              ))}
-            </div>
-          </article>
 
-          <article className="rounded-md border border-border/80 bg-card/90 p-6 shadow-[var(--shadow-panel)] sm:p-8">
-            <Badge variant="outline" className="border-border/80 text-muted-foreground">
-              Institutional Insights
-            </Badge>
-            <h2 className="mt-5 text-3xl text-foreground">Policy, market, and governance updates that keep members ahead.</h2>
-            <div className="mt-6 space-y-3">
-              {institutionalItems.map((item) => (
-                <div key={item} className="list-chip">
-                  <ChartNoAxesCombined className="size-4 text-primary" />
-                  <span>{item}</span>
+                <div className="mt-6 flex items-end justify-between">
+                  <div>
+                    <p className="font-display text-6xl font-semibold gold-text">94</p>
+                    <p className="text-xs uppercase tracking-[0.14em] text-foreground/55">/ 100 score</p>
+                  </div>
+                  <div className="rounded-full border border-[oklch(0.78_0.18_145_/_0.4)] bg-[oklch(0.78_0.18_145_/_0.1)] px-3 py-1 text-xs font-semibold text-[oklch(0.85_0.15_145)]">
+                    +6 this week
+                  </div>
                 </div>
-              ))}
-            </div>
-          </article>
-        </div>
-      </section>
 
-      <section className="section-band mt-14">
-        <div className="section-wrap py-12">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Membership Framework</p>
-              <h2 className="mt-2 text-3xl text-foreground">Three membership pathways aligned to organisation type.</h2>
-            </div>
-            <p className="text-sm font-medium text-muted-foreground">All subscriptions require once-off registration of N$1,500.</p>
+                <div className="mt-7 space-y-4">
+                  {[
+                    { l: "Employment Contracts", v: 98 },
+                    { l: "Disciplinary Records", v: 91 },
+                    { l: "Equity & Diversity", v: 88 },
+                    { l: "Policy Coverage", v: 96 },
+                  ].map((s) => (
+                    <div key={s.l}>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-foreground/70">{s.l}</span>
+                        <span className="font-semibold text-foreground">{s.v}%</span>
+                      </div>
+                      <div className="stat-bar mt-1.5"><span style={{ width: `${s.v}%` }} /></div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-7 grid grid-cols-3 gap-3 border-t border-white/10 pt-5">
+                  {[
+                    { l: "Active Cases", v: "78", c: "icon-chip" },
+                    { l: "Hearings", v: "12", c: "icon-chip-copper icon-chip" },
+                    { l: "Resolved", v: "92%", c: "icon-chip-mint icon-chip" },
+                  ].map((m) => (
+                    <div key={m.l} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                      <p className="font-display text-2xl font-semibold text-foreground">{m.v}</p>
+                      <p className="text-[0.6rem] uppercase tracking-[0.14em] text-foreground/55">{m.l}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Floating notification */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 }}
+                className="floating-card absolute -bottom-6 -left-6 hidden md:block"
+                style={{ animationDelay: "1.5s" }}
+              >
+                <div className="glass-card flex items-center gap-3 !p-4">
+                  <div className="icon-chip h-10 w-10"><Users className="size-4" /></div>
+                  <div>
+                    <p className="text-xs font-semibold text-foreground">23 members online</p>
+                    <p className="text-[0.65rem] text-foreground/60">3 active hearings</p>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            {membershipPlans.map((plan) => (
-              <article key={plan.name} className="rounded-md border border-border/80 bg-card/90 p-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">{plan.name}</p>
-                <p className="mt-3 text-2xl font-semibold text-foreground">{plan.fee}</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{plan.audience}</p>
-                <Button variant="quiet" size="sm" className="mt-5 w-full">
-                  Select {plan.name}
-                </Button>
-              </article>
+      {/* TRAINING */}
+      <section id="training" className="relative py-24">
+        <div className="section-wrap">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} className="mx-auto max-w-2xl text-center">
+            <span className="brand-pill"><GraduationCap className="size-3" /> Training Hub</span>
+            <h2 className="mt-5 font-display text-4xl text-foreground sm:text-5xl">
+              Programs built for <span className="gold-text">applied capability.</span>
+            </h2>
+            <p className="mt-4 text-foreground/65">Online • Webinar • In-house • Distance learning</p>
+          </motion.div>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {trainingCourses.map((c, i) => (
+              <motion.article
+                key={c}
+                initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} custom={i}
+                className="feature-tile"
+              >
+                <div className="icon-chip-copper icon-chip"><GraduationCap className="size-5" /></div>
+                <h3 className="mt-5 font-display text-lg text-foreground">{c}</h3>
+                <p className="mt-2 text-sm text-foreground/60">Progressive module delivery for applied workplace capability.</p>
+                <div className="mt-5 flex items-center justify-between border-t border-white/8 pt-4 text-xs">
+                  <span className="text-foreground/50">6 weeks • Online</span>
+                  <span className="font-semibold text-[var(--brand-gold-soft)]">Enroll →</span>
+                </div>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
+
+      {/* KNOWLEDGE */}
+      <section className="relative py-24">
+        <div className="section-wrap">
+          <div className="grid gap-6 lg:grid-cols-2">
+            <motion.article
+              initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+              className="glass-card-strong"
+            >
+              <span className="brand-pill"><LibraryBig className="size-3" /> Knowledge Centre</span>
+              <h3 className="mt-5 font-display text-3xl text-foreground">Research depth for serious labour-law work.</h3>
+              <p className="mt-3 text-foreground/65">Labour Act guides, arbitration awards, court decisions, ILO standards, and SADC comparative research — one indexed reference environment.</p>
+              <div className="mt-6 grid gap-3">
+                {knowledgeResources.map((r) => {
+                  const Icon = r.icon;
+                  return (
+                    <div key={r.label} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                      <Icon className="size-4 text-[var(--brand-gold)]" />
+                      <span className="text-sm text-foreground/85">{r.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.article>
+
+            <motion.article
+              initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} custom={1}
+              className="glass-card overflow-hidden"
+            >
+              <span className="brand-pill"><ChartNoAxesCombined className="size-3" /> Institutional Insights</span>
+              <h3 className="mt-5 font-display text-3xl text-foreground">Policy, market & governance updates.</h3>
+              <p className="mt-3 text-foreground/65">Stay ahead of legislative amendments, regulatory developments, and labour market research curated for decision-makers.</p>
+
+              <div className="mt-6 space-y-3">
+                {[
+                  { l: "Labour Act Amendment 2026", t: "Policy Update", d: "2 days ago" },
+                  { l: "SADC Wage Comparison Report", t: "Research", d: "1 week ago" },
+                  { l: "Q1 Workforce Stability Index", t: "Analytics", d: "2 weeks ago" },
+                  { l: "OLC Arbitration Trends", t: "Insights", d: "3 weeks ago" },
+                ].map((n) => (
+                  <div key={n.l} className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-4 py-3">
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{n.l}</p>
+                      <p className="text-[0.65rem] uppercase tracking-[0.14em] text-foreground/50">{n.t} • {n.d}</p>
+                    </div>
+                    <ChevronRight className="size-4 text-foreground/40" />
+                  </div>
+                ))}
+              </div>
+            </motion.article>
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section id="pricing" className="relative py-24">
+        <div className="section-wrap">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} className="mx-auto max-w-2xl text-center">
+            <span className="brand-pill"><Briefcase className="size-3" /> Membership</span>
+            <h2 className="mt-5 font-display text-4xl text-foreground sm:text-5xl">
+              Three pathways. <span className="gold-text">One platform.</span>
+            </h2>
+            <p className="mt-4 text-foreground/65">All subscriptions include once-off registration of N$1,500.</p>
+          </motion.div>
+
+          <div className="mt-14 grid gap-5 lg:grid-cols-3">
+            {membershipPlans.map((p, i) => (
+              <motion.article
+                key={p.name}
+                initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} custom={i}
+                className={p.featured ? "glass-card-strong relative" : "feature-tile"}
+              >
+                {p.featured && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[var(--brand-navy-deep)]" style={{ background: "var(--gradient-gold)" }}>
+                    Most Popular
+                  </span>
+                )}
+                <p className="text-xs uppercase tracking-[0.16em] text-[var(--brand-gold-soft)]">{p.name}</p>
+                <p className="mt-2 text-sm text-foreground/60">{p.audience}</p>
+                <div className="mt-5 flex items-baseline gap-1">
+                  <p className="font-display text-4xl font-semibold text-foreground">{p.fee}</p>
+                  <p className="text-sm text-foreground/55">{p.per}</p>
+                </div>
+                <ul className="mt-6 space-y-3">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-foreground/80">
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[var(--brand-gold)]" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Button variant={p.featured ? "gold" : "glass"} size="lg" className="mt-7 w-full">
+                  Select {p.name}
+                </Button>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative py-24">
+        <div className="section-wrap">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="relative overflow-hidden rounded-3xl border border-white/10 p-10 text-center sm:p-16"
+            style={{ background: "var(--gradient-mesh)" }}
+          >
+            <div className="absolute inset-0 backdrop-blur-3xl" />
+            <div className="absolute inset-0 bg-[oklch(0.16_0.04_252_/_0.7)]" />
+            <div className="relative">
+              <span className="brand-pill"><Sparkles className="size-3" /> Ready when you are</span>
+              <h2 className="mt-5 font-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
+                Join the future of <span className="gold-text">labour-law technology.</span>
+              </h2>
+              <p className="mx-auto mt-5 max-w-xl text-foreground/70">
+                Built in Namibia, designed for SADC. Become a member today and bring discipline, intelligence, and clarity into every workplace decision.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <Button variant="gold" size="xl">Start Membership Application <ArrowRight className="size-4" /></Button>
+                <Button variant="glass" size="xl">Talk to Sales</Button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="relative border-t border-white/10 bg-black/30 py-12 backdrop-blur-md">
+        <div className="section-wrap">
+          <div className="grid gap-10 md:grid-cols-4">
+            <div>
+              <div className="flex items-center gap-3">
+                <img src={namLaborisLogo} alt="" className="h-9 w-9 rounded-lg" />
+                <p className="font-display text-lg font-bold text-foreground">NamLaboris</p>
+              </div>
+              <p className="mt-4 text-sm text-foreground/55">Labour governance intelligence for Namibia & SADC.</p>
+            </div>
+            {[
+              { t: "Platform", l: ["ADR Cases", "Compliance", "AI Assistant", "Analytics"] },
+              { t: "Resources", l: ["Knowledge Centre", "Training Hub", "Research", "API Docs"] },
+              { t: "Company", l: ["About", "Careers", "Contact", "Privacy"] },
+            ].map((g) => (
+              <div key={g.t}>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-gold-soft)]">{g.t}</p>
+                <ul className="mt-4 space-y-2.5">
+                  {g.l.map((x) => (
+                    <li key={x}><a href="#" className="text-sm text-foreground/65 hover:text-foreground">{x}</a></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-foreground/45 sm:flex-row">
+            <p>© 2026 NamLaboris Agency. All rights reserved.</p>
+            <p>Windhoek, Namibia</p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
