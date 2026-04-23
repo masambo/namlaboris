@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import {
   Activity,
   ArrowRight,
@@ -80,9 +81,9 @@ const membershipPlans = [
 
 const partners = ["Ministry of Labour", "Office of the Labour Commissioner", "SADC", "ILO", "Namibian Employers Federation", "Law Society of Namibia"];
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  show: (i: number = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] } }),
+  show: (i: number = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.08, ease: "easeOut" } }),
 };
 
 export function NamLaborisHomePage() {
