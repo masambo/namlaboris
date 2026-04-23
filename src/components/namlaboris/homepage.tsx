@@ -500,3 +500,384 @@ export function NamLaborisHomePage() {
     </main>
   );
 }
+
+function HeroSection() {
+  return (
+    <div className="section-wrap relative pt-14 pb-20 lg:pt-20 lg:pb-24">
+      {/* Centered headline block (Cravo-style) */}
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <motion.div initial="hidden" animate="show" variants={fadeUp} custom={0} className="flex justify-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-gold)]/30 bg-[var(--brand-gold)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--brand-gold-soft)] backdrop-blur-md">
+            <Star className="size-3.5 fill-[var(--brand-gold)] text-[var(--brand-gold)]" />
+            Trusted by 1,200+ HR & Legal Teams across SADC
+          </span>
+        </motion.div>
+
+        <motion.h1
+          initial="hidden" animate="show" variants={fadeUp} custom={1}
+          className="mt-7 font-display text-[2.6rem] leading-[1.05] text-foreground sm:text-6xl lg:text-[5rem]"
+        >
+          Master Labour Law. <br className="hidden sm:block" />
+          <span className="gold-text">Govern</span> Your Workforce.
+        </motion.h1>
+
+        <motion.p
+          initial="hidden" animate="show" variants={fadeUp} custom={2}
+          className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg"
+        >
+          With NamLaboris, turn complex labour regulation into clear action. Manage disputes, run compliance audits,
+          and access AI legal reasoning — built for employers, HR practitioners, and institutions across Namibia & SADC.
+        </motion.p>
+
+        <motion.div
+          initial="hidden" animate="show" variants={fadeUp} custom={3}
+          className="mt-9 flex flex-wrap items-center justify-center gap-3"
+        >
+          <Button variant="gold" size="xl">Try for free <ArrowRight className="size-4" /></Button>
+          <Button variant="glass" size="xl"><PlayCircle className="size-4" /> Watch demo</Button>
+        </motion.div>
+
+        <motion.div
+          initial="hidden" animate="show" variants={fadeUp} custom={4}
+          className="mt-7 flex flex-wrap items-center justify-center gap-3"
+        >
+          <a href="#" className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 backdrop-blur-md transition-all hover:border-[var(--brand-gold)]/40 hover:bg-white/[0.08]">
+            <svg viewBox="0 0 24 24" className="size-5 fill-foreground" aria-hidden><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" /></svg>
+            <div className="text-left leading-tight">
+              <p className="text-[0.55rem] uppercase tracking-wider text-foreground/60">Download on the</p>
+              <p className="text-sm font-semibold text-foreground">App Store</p>
+            </div>
+          </a>
+          <a href="#" className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 backdrop-blur-md transition-all hover:border-[var(--brand-gold)]/40 hover:bg-white/[0.08]">
+            <svg viewBox="0 0 24 24" className="size-5" aria-hidden>
+              <path d="M3.6 1.7a2 2 0 0 0-1 1.7v17.2c0 .7.4 1.3 1 1.7L13 12 3.6 1.7z" fill="#34A853"/>
+              <path d="M16.8 8.6L13.7 12l3.1 3.4 4.2-2.4c1.3-.7 1.3-2.6 0-3.3l-4.2-2.4z" fill="#FBBC04"/>
+              <path d="M3.6 22.3l9.4-10.3-2.5-2.7-7 8.7c-.1 1.7.7 4 .1 4.3z" fill="#EA4335"/>
+              <path d="M3.6 1.7l10.1 11.1 3.1-3.4L4.6.7c-.4-.2-.7 0-1 1z" fill="#4285F4"/>
+            </svg>
+            <div className="text-left leading-tight">
+              <p className="text-[0.55rem] uppercase tracking-wider text-foreground/60">Get it on</p>
+              <p className="text-sm font-semibold text-foreground">Google Play</p>
+            </div>
+          </a>
+        </motion.div>
+      </div>
+
+      {/* Glow halo behind window */}
+      <div className="pointer-events-none absolute left-1/2 top-[58%] -z-0 h-[420px] w-[80%] -translate-x-1/2 rounded-full bg-[var(--brand-gold)]/20 blur-[120px]" />
+      <div className="pointer-events-none absolute left-1/2 top-[62%] -z-0 h-[280px] w-[60%] -translate-x-1/2 rounded-full bg-[var(--brand-copper)]/15 blur-[100px]" />
+
+      {/* App window mockup */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 mx-auto mt-16 w-full max-w-6xl"
+      >
+        <AppWindow />
+
+        {/* Floating mini cards */}
+        <motion.div
+          initial={{ opacity: 0, x: -30, y: 20 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ delay: 1.1, duration: 0.7 }}
+          className="absolute -left-4 top-32 hidden lg:block"
+        >
+          <div className="glass-card-strong floating-card flex items-center gap-3 !p-4" style={{ animationDelay: "1s" }}>
+            <div className="icon-chip h-10 w-10"><TrendingUp className="size-4" /></div>
+            <div>
+              <p className="text-[0.6rem] uppercase tracking-[0.14em] text-foreground/60">Resolution Rate</p>
+              <p className="font-display text-xl font-semibold gold-text">+24%</p>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 30, y: 20 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ delay: 1.3, duration: 0.7 }}
+          className="absolute -right-4 bottom-24 hidden lg:block"
+        >
+          <div className="glass-card floating-card flex items-center gap-3 !p-4" style={{ animationDelay: "2s" }}>
+            <div className="icon-chip-mint icon-chip h-10 w-10"><Bot className="size-4" /></div>
+            <div>
+              <p className="text-xs font-semibold text-foreground">AI Assistant</p>
+              <p className="text-[0.65rem] text-foreground/60">Drafting brief…</p>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
+function AppWindow() {
+  return (
+    <div
+      className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[oklch(0.22_0.05_252)] to-[oklch(0.14_0.04_252)] shadow-[0_60px_120px_-40px_oklch(0_0_0_/_0.7),0_0_0_1px_oklch(1_0_0_/_0.06)_inset]"
+    >
+      {/* macOS-style title bar */}
+      <div className="flex items-center justify-between border-b border-white/8 bg-white/[0.03] px-4 py-3">
+        <div className="flex items-center gap-1.5">
+          <span className="size-3 rounded-full bg-[#FF5F57]" />
+          <span className="size-3 rounded-full bg-[#FEBC2E]" />
+          <span className="size-3 rounded-full bg-[#28C840]" />
+        </div>
+        <div className="flex items-center gap-2 rounded-md bg-white/5 px-3 py-1 text-[0.65rem] text-foreground/50">
+          <span className="size-1.5 rounded-full bg-[var(--brand-gold)]" />
+          app.namlaboris.com / dashboard
+        </div>
+        <div className="flex items-center gap-2 text-foreground/40">
+          <Search className="size-3.5" />
+          <Settings className="size-3.5" />
+        </div>
+      </div>
+
+      {/* App body */}
+      <div className="grid grid-cols-12 min-h-[480px]">
+        {/* Sidebar */}
+        <aside className="col-span-3 hidden border-r border-white/8 bg-white/[0.02] p-4 lg:block">
+          <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-foreground/50">
+            <Search className="size-3.5" /> Search cases…
+            <span className="ml-auto rounded bg-white/5 px-1.5 py-0.5 text-[0.55rem]">⌘F</span>
+          </div>
+          <p className="mt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40">Workspace</p>
+          <nav className="mt-2 space-y-1 text-sm">
+            {[
+              { label: "Dashboard", icon: LayoutDashboard, active: true },
+              { label: "ADR Cases", icon: Gavel },
+              { label: "Compliance", icon: ShieldCheck },
+              { label: "AI Assistant", icon: Bot },
+              { label: "Policy Builder", icon: LibraryBig },
+              { label: "Calendar", icon: Calendar },
+            ].map((it) => {
+              const Icon = it.icon;
+              return (
+                <div
+                  key={it.label}
+                  className={`flex items-center gap-2.5 rounded-lg px-3 py-2 transition-colors ${
+                    it.active
+                      ? "bg-[var(--brand-gold)]/15 text-[var(--brand-gold-soft)] border border-[var(--brand-gold)]/25"
+                      : "text-foreground/65 hover:bg-white/5"
+                  }`}
+                >
+                  <Icon className="size-4" />
+                  {it.label}
+                </div>
+              );
+            })}
+          </nav>
+          <p className="mt-6 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40">Knowledge</p>
+          <nav className="mt-2 space-y-1 text-sm">
+            {[
+              { label: "Training Hub", icon: GraduationCap },
+              { label: "Research", icon: BookOpen },
+              { label: "Documents", icon: FolderOpen },
+            ].map((it) => {
+              const Icon = it.icon;
+              return (
+                <div key={it.label} className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-foreground/65 hover:bg-white/5">
+                  <Icon className="size-4" /> {it.label}
+                </div>
+              );
+            })}
+          </nav>
+        </aside>
+
+        {/* Main */}
+        <section className="col-span-12 lg:col-span-9 p-5 sm:p-6">
+          {/* Top bar */}
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-[0.65rem] uppercase tracking-[0.18em] text-foreground/45">Overview</p>
+              <h3 className="font-display text-xl font-semibold text-foreground">Dashboard</h3>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-[0.7rem] text-foreground/65">
+                <Calendar className="size-3.5" /> Mon, 6 Apr 2026
+              </span>
+              <Button variant="gold" size="sm"><Download className="size-3.5" /> Export</Button>
+              <span className="relative inline-flex size-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] text-foreground/65">
+                <Bell className="size-3.5" />
+                <span className="absolute -top-0.5 -right-0.5 size-2 rounded-full bg-[var(--brand-copper)]" />
+              </span>
+            </div>
+          </div>
+
+          {/* KPI cards */}
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            {[
+              { label: "Active Cases", value: "172", delta: "+12", icon: Gavel, up: true },
+              { label: "Compliance Score", value: "98%", delta: "+7%", icon: ShieldCheck, up: true },
+              { label: "Hearings Booked", value: "24", delta: "-3", icon: Scale, up: false },
+            ].map((k) => {
+              const Icon = k.icon;
+              return (
+                <div key={k.label} className="rounded-xl border border-white/8 bg-white/[0.03] p-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="text-[0.65rem] uppercase tracking-wider text-foreground/55">{k.label}</p>
+                      <p className="mt-1 font-display text-2xl font-semibold text-foreground">{k.value}</p>
+                    </div>
+                    <span className="icon-chip h-9 w-9"><Icon className="size-4" /></span>
+                  </div>
+                  <p className={`mt-2 inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[0.65rem] font-semibold ${k.up ? "bg-[oklch(0.78_0.18_145_/_0.15)] text-[oklch(0.85_0.18_145)]" : "bg-[var(--brand-copper)]/15 text-[oklch(0.85_0.13_35)]"}`}>
+                    {k.up ? "↗" : "↘"} {k.delta} <span className="ml-1 text-foreground/45 font-normal">this month</span>
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Chart + side widget */}
+          <div className="mt-4 grid gap-3 lg:grid-cols-[1.6fr_1fr]">
+            <div className="rounded-xl border border-white/8 bg-white/[0.03] p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-[0.65rem] uppercase tracking-wider text-foreground/55">Case Resolution Trend</p>
+                  <p className="mt-1 font-display text-xl font-semibold gold-text">N$ 4.7M recovered</p>
+                </div>
+                <div className="flex gap-1 rounded-md border border-white/10 bg-white/[0.04] p-0.5 text-[0.65rem]">
+                  {["Weekly", "Monthly", "Yearly"].map((t, i) => (
+                    <span key={t} className={`rounded px-2 py-1 ${i === 1 ? "bg-[var(--brand-gold)]/20 text-[var(--brand-gold-soft)]" : "text-foreground/55"}`}>{t}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Animated SVG chart */}
+              <div className="relative mt-4 h-44">
+                <svg viewBox="0 0 400 160" className="h-full w-full" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="oklch(0.82 0.16 86)" stopOpacity="0.45" />
+                      <stop offset="100%" stopColor="oklch(0.82 0.16 86)" stopOpacity="0" />
+                    </linearGradient>
+                    <linearGradient id="chartLine" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="oklch(0.88 0.14 92)" />
+                      <stop offset="100%" stopColor="oklch(0.7 0.16 32)" />
+                    </linearGradient>
+                  </defs>
+                  {[30, 60, 90, 120].map((y) => (
+                    <line key={y} x1="0" x2="400" y1={y} y2={y} stroke="oklch(1 0 0 / 0.05)" strokeDasharray="3 4" />
+                  ))}
+                  <motion.path
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ delay: 1.0, duration: 1.6, ease: "easeInOut" }}
+                    d="M0,110 C40,90 60,60 90,70 C120,80 140,40 180,50 C220,60 240,30 280,38 C320,46 340,80 380,55 L400,50"
+                    fill="none"
+                    stroke="url(#chartLine)"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
+                  <motion.path
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.8, duration: 0.8 }}
+                    d="M0,110 C40,90 60,60 90,70 C120,80 140,40 180,50 C220,60 240,30 280,38 C320,46 340,80 380,55 L400,50 L400,160 L0,160 Z"
+                    fill="url(#chartFill)"
+                  />
+                  <motion.circle
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 2.2, duration: 0.4 }}
+                    cx="280" cy="38" r="5" fill="oklch(0.88 0.14 92)" stroke="oklch(0.16 0.04 252)" strokeWidth="2"
+                  />
+                </svg>
+                <div className="absolute left-[68%] top-2 rounded-lg border border-[var(--brand-gold)]/40 bg-[var(--background)] px-2 py-1 text-[0.6rem] font-semibold text-[var(--brand-gold-soft)]">
+                  Mar • N$ 980K
+                </div>
+              </div>
+              <div className="mt-2 flex justify-between text-[0.6rem] text-foreground/45">
+                {["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"].map((m) => <span key={m}>{m}</span>)}
+              </div>
+            </div>
+
+            {/* Live cases widget */}
+            <div className="rounded-xl border border-white/8 bg-white/[0.03] p-4">
+              <div className="flex items-center justify-between">
+                <p className="text-[0.65rem] uppercase tracking-wider text-foreground/55">Live Caseload</p>
+                <span className="inline-flex items-center gap-1 text-[0.6rem] font-semibold text-[oklch(0.85_0.18_145)]">
+                  <span className="live-dot" /> LIVE
+                </span>
+              </div>
+              <div className="mt-4 space-y-3.5">
+                {[
+                  { l: "Disciplinary", v: 78, color: "var(--gradient-gold)" },
+                  { l: "Arbitration", v: 56, color: "var(--gradient-copper)" },
+                  { l: "Grievance", v: 42, color: "linear-gradient(135deg, oklch(0.78 0.14 165), oklch(0.62 0.14 200))" },
+                  { l: "Retrenchment", v: 23, color: "linear-gradient(135deg, oklch(0.7 0.14 280), oklch(0.55 0.16 260))" },
+                ].map((s, i) => (
+                  <div key={s.l}>
+                    <div className="flex justify-between text-[0.7rem]">
+                      <span className="text-foreground/70">{s.l}</span>
+                      <span className="text-foreground/55">{s.v} cases</span>
+                    </div>
+                    <div className="stat-bar mt-1.5">
+                      <motion.span
+                        initial={{ width: 0 }}
+                        animate={{ width: `${s.v}%` }}
+                        transition={{ delay: 1.2 + i * 0.15, duration: 1, ease: "easeOut" }}
+                        style={{ background: s.color, display: "block", height: "100%" }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 flex items-center gap-2 rounded-lg border border-[var(--brand-gold)]/25 bg-[var(--brand-gold)]/8 p-2.5">
+                <Bot className="size-4 text-[var(--brand-gold-soft)]" />
+                <p className="text-[0.65rem] text-foreground/75"><span className="font-semibold text-foreground">AI tip:</span> 3 cases need urgent review</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom row: hearings + AI */}
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/8 bg-white/[0.03] p-4">
+              <div className="flex items-center justify-between">
+                <p className="text-[0.65rem] uppercase tracking-wider text-foreground/55">Upcoming Hearings</p>
+                <Clock className="size-3.5 text-foreground/40" />
+              </div>
+              <div className="mt-3 space-y-2.5">
+                {[
+                  { c: "Smith vs. XYZ Ltd.", t: "Tomorrow • 10:00", tag: "Disciplinary" },
+                  { c: "Nampower Arbitration", t: "Thu • 14:00", tag: "Arbitration" },
+                  { c: "Kavango Grievance", t: "Fri • 09:30", tag: "Grievance" },
+                ].map((h) => (
+                  <div key={h.c} className="flex items-center justify-between rounded-lg border border-white/8 bg-white/[0.03] px-3 py-2">
+                    <div>
+                      <p className="text-xs font-semibold text-foreground">{h.c}</p>
+                      <p className="text-[0.65rem] text-foreground/55">{h.t}</p>
+                    </div>
+                    <span className="rounded-full border border-[var(--brand-gold)]/25 bg-[var(--brand-gold)]/10 px-2 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wider text-[var(--brand-gold-soft)]">
+                      {h.tag}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-[var(--brand-gold)]/25 bg-gradient-to-br from-[var(--brand-gold)]/10 to-[var(--brand-copper)]/5 p-4">
+              <div className="flex items-center gap-2">
+                <span className="icon-chip h-8 w-8"><Bot className="size-4" /></span>
+                <div>
+                  <p className="text-xs font-semibold text-foreground">AI Legal Assistant</p>
+                  <p className="text-[0.6rem] text-foreground/55">Section 33 • Labour Act, 2007</p>
+                </div>
+              </div>
+              <div className="mt-3 rounded-lg border border-white/8 bg-[var(--background)]/40 p-3 text-xs leading-relaxed text-foreground/75">
+                <span className="shimmer-text">Drafting reply: dismissal must follow a fair procedure including the right to be heard, with reasonable notice…</span>
+                <span className="ml-0.5 inline-block h-3 w-1 translate-y-0.5 bg-[var(--brand-gold)]" style={{ animation: "blink 1s steps(2) infinite" }} />
+              </div>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {["Cite case law", "Draft warning", "Summarise"].map((t) => (
+                  <span key={t} className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-1 text-[0.6rem] text-foreground/70">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
