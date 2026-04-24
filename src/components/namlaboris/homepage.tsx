@@ -33,6 +33,13 @@ import {
 } from "lucide-react";
 
 import namLaborisLogo from "@/assets/namlaboris-logo.png";
+import supremeCourtImg from "@/assets/supreme-court.jpg";
+import robotImg from "@/assets/namlaboris-robot.png";
+import logoSadc from "@/assets/logo-sadc.png";
+import logoNef from "@/assets/logo-nef.png";
+import logoIlo from "@/assets/logo-ilo.png";
+import logoLawSociety from "@/assets/logo-lawsociety.jpeg";
+import logoNamibiaCoat from "@/assets/logo-namibia-coat.png";
 import { Button } from "@/components/ui/button";
 
 const navigationItems = [
@@ -88,7 +95,13 @@ const membershipPlans = [
   { name: "Institutional", audience: "Universities & Government", fee: "N$5,500", per: "/month", features: ["Everything in Professional", "Workforce analytics", "API access", "Custom integrations", "Unlimited seats"], featured: false },
 ];
 
-const partners = ["Ministry of Labour", "Office of the Labour Commissioner", "SADC", "ILO", "Namibian Employers Federation", "Law Society of Namibia"];
+const partners: { name: string; logo: string }[] = [
+  { name: "Government of Namibia", logo: logoNamibiaCoat },
+  { name: "SADC", logo: logoSadc },
+  { name: "ILO", logo: logoIlo },
+  { name: "Namibian Employers Federation", logo: logoNef },
+  { name: "Law Society of Namibia", logo: logoLawSociety },
+];
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
