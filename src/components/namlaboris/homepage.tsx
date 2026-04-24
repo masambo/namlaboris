@@ -522,13 +522,13 @@ export function NamLaborisHomePage() {
       {/* HERO */}
       <section id="top" className="relative grid-bg overflow-hidden">
         {/* Supreme Court backdrop — only behind the headline area, ends before the app window */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[560px] lg:h-[640px]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[620px] lg:h-[720px]">
           <img
             src={supremeCourtImg}
             alt="Supreme Court of Namibia"
-            className="h-full w-full object-contain object-top opacity-60 sm:object-cover"
+            className="h-full w-full object-cover object-center opacity-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.04_252)]/60 via-[oklch(0.16_0.04_252)]/75 to-[oklch(0.16_0.04_252)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.04_252)]/30 via-[oklch(0.16_0.04_252)]/55 to-[oklch(0.16_0.04_252)]" />
         </div>
 
         <HeroSection />
