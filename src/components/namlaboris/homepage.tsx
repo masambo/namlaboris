@@ -33,6 +33,8 @@ import {
 } from "lucide-react";
 
 import namLaborisLogo from "@/assets/namlaboris-logo.png";
+import { Link } from "@tanstack/react-router";
+import { useAuth } from "@/contexts/AuthContext";
 import supremeCourtImg from "@/assets/supreme-court.jpg";
 import robotImg from "@/assets/namlaboris-robot.png";
 import logoSadc from "@/assets/logo-sadc.png";
@@ -107,6 +109,31 @@ const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   show: (i: number = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.08, ease: "easeOut" } }),
 };
+
+function NavAuthButtons() {
+  const { user, loading, signOut } = useAuth();
+  if (loading) return <div className="h-9 w-24" />;
+  if (user) {
+    return (
+      <div className="flex items-center gap-2">
+        <Button asChild variant="glass" size="sm" className="hidden sm:inline-flex">
+          <Link to="/assistant">AI Assistant</Link>
+        </Button>
+        <Button variant="gold" size="sm" onClick={() => signOut()}>Sign out</Button>
+      </div>
+    );
+  }
+  return (
+    <div className="flex items-center gap-2">
+      <Button asChild variant="glass" size="sm" className="hidden sm:inline-flex">
+        <Link to="/login">Login</Link>
+      </Button>
+      <Button asChild variant="gold" size="sm">
+        <Link to="/signup">Register <ArrowRight className="size-4" /></Link>
+      </Button>
+    </div>
+  );
+}
 
 function HeroSection() {
   return (
@@ -512,10 +539,7 @@ export function NamLaborisHomePage() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <Button variant="glass" size="sm" className="hidden sm:inline-flex">Login</Button>
-            <Button variant="gold" size="sm">Register <ArrowRight className="size-4" /></Button>
-          </div>
+          <NavAuthButtons />
         </div>
       </header>
 
