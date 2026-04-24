@@ -533,9 +533,9 @@ export function NamLaborisHomePage() {
           <img
             src={supremeCourtImg}
             alt="Supreme Court of Namibia"
-            className="h-full w-full object-cover opacity-[0.18]"
+            className="h-full w-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.04_252)]/80 via-[oklch(0.16_0.04_252)]/85 to-[oklch(0.13_0.04_252)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.04_252)]/70 via-[oklch(0.16_0.04_252)]/75 to-[oklch(0.13_0.04_252)]/95" />
         </div>
 
         {/* Robot mascot — integrated right side */}
@@ -545,22 +545,22 @@ export function NamLaborisHomePage() {
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute right-[-3%] top-[6%] z-0 hidden h-[88%] w-auto object-contain opacity-90 mix-blend-luminosity drop-shadow-[0_30px_60px_oklch(0.82_0.16_86_/_0.35)] xl:block"
+          className="pointer-events-none absolute right-[-4%] top-[8%] z-0 hidden h-[85%] w-auto object-contain opacity-95 drop-shadow-[0_40px_80px_oklch(0.82_0.16_86_/_0.4)] xl:block"
           style={{ maskImage: "linear-gradient(to left, black 60%, transparent 100%)", WebkitMaskImage: "linear-gradient(to left, black 60%, transparent 100%)" }}
         />
 
         <HeroSection />
 
         {/* Partners marquee */}
-        <div className="border-y border-white/5 bg-black/20 py-6 backdrop-blur-md">
+        <div className="relative border-y border-white/10 bg-white/[0.04] py-8 backdrop-blur-md">
           <div className="overflow-hidden">
             <div className="marquee items-center gap-16 whitespace-nowrap">
               {[...partners, ...partners].map((p, i) => (
-                <div key={i} className="flex shrink-0 items-center gap-16">
+                <div key={i} className="flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3">
                   <img
                     src={p.logo}
                     alt={p.name}
-                    className="h-12 w-auto object-contain opacity-70 grayscale brightness-150 transition hover:opacity-100 hover:grayscale-0"
+                    className="h-12 w-auto object-contain"
                   />
                 </div>
               ))}
