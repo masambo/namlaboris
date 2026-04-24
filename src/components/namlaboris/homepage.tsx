@@ -528,26 +528,15 @@ export function NamLaborisHomePage() {
 
       {/* HERO */}
       <section id="top" className="relative grid-bg overflow-hidden">
-        {/* Supreme Court backdrop */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
+        {/* Supreme Court backdrop — only behind the headline area, ends before the app window */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[560px] lg:h-[640px]">
           <img
             src={supremeCourtImg}
             alt="Supreme Court of Namibia"
-            className="h-full w-full object-cover opacity-50"
+            className="h-full w-full object-contain object-top opacity-60 sm:object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.04_252)]/70 via-[oklch(0.16_0.04_252)]/75 to-[oklch(0.13_0.04_252)]/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.04_252)]/60 via-[oklch(0.16_0.04_252)]/75 to-[oklch(0.16_0.04_252)]" />
         </div>
-
-        {/* Robot mascot — integrated right side */}
-        <motion.img
-          src={robotImg}
-          alt="NamLaboris AI legal assistant"
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute right-[-4%] top-[8%] z-0 hidden h-[85%] w-auto object-contain opacity-95 drop-shadow-[0_40px_80px_oklch(0.82_0.16_86_/_0.4)] xl:block"
-          style={{ maskImage: "linear-gradient(to left, black 60%, transparent 100%)", WebkitMaskImage: "linear-gradient(to left, black 60%, transparent 100%)" }}
-        />
 
         <HeroSection />
 
