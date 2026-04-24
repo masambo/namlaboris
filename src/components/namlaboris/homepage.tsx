@@ -97,10 +97,10 @@ const membershipPlans = [
 
 const partners: { name: string; logo: string }[] = [
   { name: "Government of Namibia", logo: logoNamibiaCoat },
-  { name: "SADC", logo: logoSadc },
-  { name: "ILO", logo: logoIlo },
+  { name: "SADC — Southern African Development Community", logo: logoSadc },
+  { name: "ILO — International Labour Organization", logo: logoIlo },
   { name: "Namibian Employers Federation", logo: logoNef },
-  { name: "Law Society of Namibia", logo: logoLawSociety },
+  { name: "The Law Society of Namibia", logo: logoLawSociety },
 ];
 
 const fadeUp: Variants = {
