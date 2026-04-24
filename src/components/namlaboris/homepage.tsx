@@ -33,6 +33,8 @@ import {
 } from "lucide-react";
 
 import namLaborisLogo from "@/assets/namlaboris-logo.png";
+import { Link } from "@tanstack/react-router";
+import { useAuth } from "@/contexts/AuthContext";
 import supremeCourtImg from "@/assets/supreme-court.jpg";
 import robotImg from "@/assets/namlaboris-robot.png";
 import logoSadc from "@/assets/logo-sadc.png";
@@ -512,10 +514,7 @@ export function NamLaborisHomePage() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <Button variant="glass" size="sm" className="hidden sm:inline-flex">Login</Button>
-            <Button variant="gold" size="sm">Register <ArrowRight className="size-4" /></Button>
-          </div>
+          <NavAuthButtons />
         </div>
       </header>
 
