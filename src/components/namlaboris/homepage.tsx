@@ -97,10 +97,10 @@ const membershipPlans = [
 
 const partners: { name: string; logo: string }[] = [
   { name: "Government of Namibia", logo: logoNamibiaCoat },
-  { name: "SADC", logo: logoSadc },
-  { name: "ILO", logo: logoIlo },
+  { name: "SADC — Southern African Development Community", logo: logoSadc },
+  { name: "ILO — International Labour Organization", logo: logoIlo },
   { name: "Namibian Employers Federation", logo: logoNef },
-  { name: "Law Society of Namibia", logo: logoLawSociety },
+  { name: "The Law Society of Namibia", logo: logoLawSociety },
 ];
 
 const fadeUp: Variants = {
@@ -113,16 +113,9 @@ function HeroSection() {
     <div className="section-wrap relative pt-14 pb-20 lg:pt-20 lg:pb-24">
       {/* Centered headline block (Cravo-style) */}
       <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <motion.div initial="hidden" animate="show" variants={fadeUp} custom={0} className="flex justify-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-gold)]/30 bg-[var(--brand-gold)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--brand-gold-soft)] backdrop-blur-md">
-            <Star className="size-3.5 fill-[var(--brand-gold)] text-[var(--brand-gold)]" />
-            Trusted by 1,200+ HR & Legal Teams across SADC
-          </span>
-        </motion.div>
-
         <motion.h1
           initial="hidden" animate="show" variants={fadeUp} custom={1}
-          className="mt-7 font-display text-[2.6rem] leading-[1.05] text-foreground sm:text-6xl lg:text-[5rem]"
+          className="font-display text-[2.6rem] leading-[1.05] text-foreground sm:text-6xl lg:text-[5rem]"
         >
           Master Labour Law. <br className="hidden sm:block" />
           <span className="gold-text">Govern</span> Your Workforce.
@@ -529,13 +522,13 @@ export function NamLaborisHomePage() {
       {/* HERO */}
       <section id="top" className="relative grid-bg overflow-hidden">
         {/* Supreme Court backdrop — only behind the headline area, ends before the app window */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[560px] lg:h-[640px]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[620px] lg:h-[720px]">
           <img
             src={supremeCourtImg}
             alt="Supreme Court of Namibia"
-            className="h-full w-full object-contain object-top opacity-60 sm:object-cover"
+            className="h-full w-full object-cover object-center opacity-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.04_252)]/60 via-[oklch(0.16_0.04_252)]/75 to-[oklch(0.16_0.04_252)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.04_252)]/30 via-[oklch(0.16_0.04_252)]/55 to-[oklch(0.16_0.04_252)]" />
         </div>
 
         <HeroSection />
@@ -543,14 +536,17 @@ export function NamLaborisHomePage() {
         {/* Partners marquee */}
         <div className="relative border-y border-white/10 bg-white/[0.04] py-8 backdrop-blur-md">
           <div className="overflow-hidden">
-            <div className="marquee items-center gap-16 whitespace-nowrap">
+            <div className="marquee items-center gap-12 whitespace-nowrap">
               {[...partners, ...partners].map((p, i) => (
-                <div key={i} className="flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3">
+                <div key={i} className="flex shrink-0 items-center gap-3 px-4">
                   <img
                     src={p.logo}
                     alt={p.name}
                     className="h-12 w-auto object-contain"
                   />
+                  <span className="text-sm font-semibold uppercase tracking-[0.14em] text-foreground/75">
+                    {p.name}
+                  </span>
                 </div>
               ))}
             </div>
