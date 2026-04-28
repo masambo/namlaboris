@@ -150,12 +150,54 @@ function NavAuthButtons() {
   const { user, loading, signOut } = useAuth();
   if (loading) return <div className="h-9 w-24" />;
   if (user) {
+    const name = (user.user_metadata?.full_name as string) || user.email || "Member";
+    const initials = name
+      .split(/\s+/)
+      .map((p) => p[0])
+      .filter(Boolean)
+      .slice(0, 2)
+      .join("")
+      .toUpperCase();
     return (
       <div className="flex items-center gap-2">
         <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex">
           <Link to="/assistant">AI Assistant</Link>
         </Button>
-        <Button variant="default" size="sm" onClick={() => signOut()}>Sign out</Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button
+              className="flex items-center gap-2 rounded-full border border-border bg-white px-1.5 py-1 pr-3 transition hover:border-[var(--brand-gold)]"
+              aria-label="Open profile menu"
+            >
+              <Avatar className="size-7">
+                <AvatarFallback className="bg-[var(--brand-navy)] text-[0.65rem] font-semibold text-white">
+                  {initials || "M"}
+                </AvatarFallback>
+              </Avatar>
+              <span className="hidden max-w-[120px] truncate text-xs font-semibold text-foreground/85 sm:inline">
+                {name}
+              </span>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuLabel className="truncate">{name}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link to="/profile" className="cursor-pointer">
+                <UserIcon className="size-4" /> Profile
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to="/assistant" className="cursor-pointer">
+                <Bot className="size-4" /> AI Assistant
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => signOut()} className="cursor-pointer text-[var(--brand-gold)]">
+              <LogOut className="size-4" /> Sign out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     );
   }
@@ -175,123 +217,260 @@ function NavAuthButtons() {
 
 function HeroSection() {
   return (
-    <div className="section-wrap relative pt-12 pb-16 lg:pt-20 lg:pb-24">
-      <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
-        <div>
-          <motion.span
-            initial="hidden" animate="show" variants={fadeUp}
-            className="brand-pill"
-          >
-            <Sparkles className="size-3" /> Integrated Workplace Governance
-          </motion.span>
+    <div className="relative overflow-hidden">
+      {/* Background image with cream/white wash */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroHandshake})` }}
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, oklch(0.985 0.003 90 / 0.92) 0%, oklch(0.985 0.003 90 / 0.78) 45%, oklch(0.985 0.003 90 / 0.95) 100%)",
+        }}
+        aria-hidden
+      />
 
-          <motion.h1
-            initial="hidden" animate="show" variants={fadeUp} custom={1}
-            className="mt-6 font-display text-[2.4rem] leading-[1.08] text-[var(--brand-navy-deep)] sm:text-5xl lg:text-[3.6rem]"
-          >
-            Empowering Workplaces. <br className="hidden sm:block" />
-            Strengthening Relations. <br className="hidden sm:block" />
-            <span className="gold-text">Building Futures.</span>
-          </motion.h1>
+      <div className="section-wrap relative pt-14 pb-20 lg:pt-20 lg:pb-24">
+        {/* Headline */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <h1 className="font-display text-3xl text-[var(--brand-navy-deep)] sm:text-4xl lg:text-5xl">
+            Welcome to NamLaboris
+          </h1>
+          <div className="mx-auto mt-3 h-px w-40 bg-[var(--brand-navy)]/40" />
+          <p className="mt-4 text-lg text-[var(--brand-navy-deep)]/80 sm:text-xl">
+            AI-Powered Labour Law &amp; ADR Solutions
+          </p>
+        </motion.div>
 
-          <motion.p
-            initial="hidden" animate="show" variants={fadeUp} custom={2}
-            className="mt-6 max-w-xl text-base leading-relaxed text-foreground/75 sm:text-lg"
-          >
-            NamLaboris is the Integrated Workplace Governance & Labour Advisory Authority — a professional
-            advisory practice anchored in the Namibian Labour Act (No. 11 of 2007) and SADC labour standards.
-            We support employers, HR practitioners, consultants, and institutions across Namibia and the region.
-          </motion.p>
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_300px] lg:items-start">
+          {/* LEFT: cards grid */}
+          <div className="space-y-5">
+            {/* Top action row — 3 cards */}
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={fadeUp}
+              custom={1}
+              className="grid gap-4 sm:grid-cols-3"
+            >
+              {[
+                { title: "File a Dispute", sub: "Start a Case", icon: Gavel },
+                { title: "Get Legal Advice", sub: "Ask an Expert", icon: MessageSquare },
+                { title: "Compliance Check", sub: "Audit Your Policies", icon: ClipboardCheck },
+              ].map((c) => {
+                const Icon = c.icon;
+                return (
+                  <a
+                    key={c.title}
+                    href="#modules"
+                    className="group rounded-xl border border-border bg-white px-5 py-5 shadow-[var(--shadow-panel)] transition hover:-translate-y-0.5 hover:border-[var(--brand-gold)]"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="mt-0.5 inline-flex size-9 items-center justify-center rounded-lg bg-[var(--brand-navy)]/10 text-[var(--brand-navy-deep)]">
+                        <Icon className="size-5" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="font-display text-base font-bold text-[var(--brand-navy-deep)]">{c.title}</p>
+                        <p className="mt-0.5 inline-flex items-center gap-1 text-xs font-semibold text-[var(--brand-navy)]/75">
+                          {c.sub} <ChevronRight className="size-3 transition group-hover:translate-x-0.5" />
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })}
+            </motion.div>
 
-          <motion.div
-            initial="hidden" animate="show" variants={fadeUp} custom={3}
-            className="mt-8 flex flex-wrap items-center gap-3"
-          >
-            <Button asChild size="xl" className="bg-[var(--brand-gold)] text-white hover:brightness-110">
-              <Link to="/signup">Become a Member <ArrowRight className="size-4" /></Link>
-            </Button>
-            <Button variant="outline" size="xl" asChild>
-              <a href="#training"><PlayCircle className="size-4" /> View Training</a>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial="hidden" animate="show" variants={fadeUp} custom={4}
-            className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6"
-          >
-            {[
-              { v: "20+", l: "Training Programs" },
-              { v: "16", l: "SADC Jurisdictions" },
-              { v: "2007", l: "Labour Act Anchored" },
-            ].map((s) => (
-              <div key={s.l}>
-                <p className="font-display text-2xl font-bold text-[var(--brand-navy-deep)]">{s.v}</p>
-                <p className="mt-1 text-[0.7rem] uppercase tracking-[0.14em] text-foreground/55">{s.l}</p>
+            {/* Middle row: Live Case Tracker (image) + Labour Law Insights (navy) */}
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={fadeUp}
+              custom={2}
+              className="grid gap-4 md:grid-cols-2"
+            >
+              {/* Live Case Tracker w/ image */}
+              <div className="relative overflow-hidden rounded-xl border border-border shadow-[var(--shadow-panel)]">
+                <img
+                  src={caseTrackerImg}
+                  alt="Two professionals shaking hands"
+                  className="absolute inset-0 h-full w-full object-cover opacity-70"
+                  width={800}
+                  height={512}
+                  loading="lazy"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, oklch(1 0 0 / 0.92) 0%, oklch(1 0 0 / 0.55) 60%, oklch(1 0 0 / 0.2) 100%)",
+                  }}
+                  aria-hidden
+                />
+                <div className="relative p-6">
+                  <p className="font-display text-xl font-bold text-[var(--brand-navy-deep)]">Live Case Tracker</p>
+                  <p className="mt-1 text-sm text-foreground/70">Current Status &amp; Hearings</p>
+                  <Button
+                    asChild
+                    size="sm"
+                    className="mt-12 bg-[var(--brand-navy)] text-white hover:brightness-110"
+                  >
+                    <Link to="/assistant">View Cases <ChevronRight className="size-3.5" /></Link>
+                  </Button>
+                </div>
               </div>
-            ))}
+
+              {/* Labour Law Insights — navy panel */}
+              <div className="relative overflow-hidden rounded-xl border border-[var(--brand-navy)] bg-[var(--brand-navy)] p-6 text-white shadow-[var(--shadow-panel)]">
+                <p className="font-display text-xl font-bold">Labour Law Insights</p>
+                <p className="mt-1 text-sm text-white/75">Analytics &amp; Reports</p>
+                <div className="mt-12">
+                  <Button
+                    asChild
+                    size="sm"
+                    className="bg-emerald-600 text-white hover:bg-emerald-500"
+                  >
+                    <a href="#modules">View Reports <ChevronRight className="size-3.5" /></a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Lower row: Upcoming Hearing + Neutrality & Fairness */}
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={fadeUp}
+              custom={3}
+              className="grid gap-4 md:grid-cols-2"
+            >
+              <div className="rounded-xl border border-border bg-white p-6 shadow-[var(--shadow-panel)]">
+                <div className="flex items-start gap-3">
+                  <span className="inline-flex size-9 items-center justify-center rounded-lg bg-[var(--brand-navy)]/10 text-[var(--brand-navy-deep)]">
+                    <CalendarClock className="size-5" />
+                  </span>
+                  <div>
+                    <p className="font-display text-lg font-bold text-[var(--brand-navy-deep)]">Upcoming Hearing</p>
+                    <p className="mt-1 text-sm text-foreground/70">Scheduled Sessions</p>
+                  </div>
+                </div>
+                <Button asChild size="sm" className="mt-5 bg-emerald-600 text-white hover:bg-emerald-500">
+                  <a href="#training">Learn More <ChevronRight className="size-3.5" /></a>
+                </Button>
+              </div>
+
+              <div className="relative overflow-hidden rounded-xl border border-border bg-white p-6 shadow-[var(--shadow-panel)]">
+                <div className="flex items-start gap-3">
+                  <span className="inline-flex size-9 items-center justify-center rounded-lg bg-[var(--brand-navy)]/10 text-[var(--brand-navy-deep)]">
+                    <Award className="size-5" />
+                  </span>
+                  <div>
+                    <p className="font-display text-lg font-bold text-[var(--brand-navy-deep)]">Neutrality &amp; Fairness</p>
+                    <p className="mt-1 text-sm text-foreground/70">Ensuring Impartial Decisions</p>
+                  </div>
+                  <GraduationCap className="ml-auto size-10 text-[var(--brand-navy-deep)]/70" />
+                </div>
+                <Button asChild size="sm" className="mt-5 bg-[var(--brand-navy)] text-white hover:brightness-110">
+                  <a href="#training">Learn More <ChevronRight className="size-3.5" /></a>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Pills + CTA */}
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={fadeUp}
+              custom={4}
+              className="flex flex-wrap items-center gap-2 pt-2"
+            >
+              {["Trusted", "Neutral", "AI-Driven"].map((label) => (
+                <span
+                  key={label}
+                  className="rounded-md border border-border bg-white px-4 py-1.5 text-xs font-semibold text-foreground/75"
+                >
+                  {label}
+                </span>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={fadeUp}
+              custom={5}
+              className="pt-2"
+            >
+              <Button
+                asChild
+                size="lg"
+                className="w-full bg-emerald-600 text-white hover:bg-emerald-500 sm:w-auto sm:px-10"
+              >
+                <Link to="/signup">
+                  Join the Future of Labour Law Technology Today!
+                  <ChevronRight className="size-4" />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* RIGHT: Phone mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.7 }}
+            className="hidden justify-center lg:flex"
+          >
+            <div className="relative w-[280px] rounded-[2.5rem] border-[10px] border-[oklch(0.18_0.02_252)] bg-[oklch(0.18_0.02_252)] shadow-[0_30px_60px_-20px_oklch(0.22_0.06_264_/_0.5)]">
+              <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black" />
+              <div className="overflow-hidden rounded-[2rem] bg-white px-4 pb-5 pt-9">
+                <p className="font-display text-lg font-bold text-[var(--brand-navy-deep)]">Hello, Anna,</p>
+                <p className="text-xs text-foreground/65">How can we assist you today?</p>
+
+                <div className="mt-4 space-y-2">
+                  {[
+                    { label: "File a Dispute", icon: Gavel, color: "bg-[var(--brand-navy)]" },
+                    { label: "Get Legal Help", icon: MessageSquare, color: "bg-[var(--brand-navy)]/85" },
+                    { label: "Compliance Check", icon: ClipboardCheck, color: "bg-emerald-600" },
+                    { label: "Training Hub", icon: GraduationCap, color: "bg-orange-500" },
+                  ].map((a) => {
+                    const Icon = a.icon;
+                    return (
+                      <div
+                        key={a.label}
+                        className={`${a.color} flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-white`}
+                      >
+                        <Icon className="size-4" /> {a.label}
+                        <ChevronRight className="ml-auto size-3.5" />
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-4 rounded-lg border border-border bg-[var(--muted)]/40 p-3">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-foreground/60">
+                    Upcoming Hearing
+                  </p>
+                  <p className="mt-1 font-display text-sm font-bold text-[var(--brand-navy-deep)]">
+                    Smith vs. XYZ Ltd.
+                  </p>
+                  <p className="text-[0.7rem] text-foreground/65">Hearing Tomorrow 10:00 AM</p>
+                  <button className="mt-2 inline-flex items-center gap-1 rounded bg-[var(--brand-navy)] px-2.5 py-1 text-[0.65rem] font-semibold text-white">
+                    Details <ChevronRight className="size-3" />
+                  </button>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
-
-        {/* Right: institutional brand panel */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
-          className="relative"
-        >
-          <div className="relative overflow-hidden rounded-2xl border border-border bg-white shadow-[var(--shadow-deep)]">
-            {/* navy header band */}
-            <div className="flex items-center justify-between bg-[var(--brand-navy)] px-6 py-5 text-white">
-              <div className="flex items-center gap-3">
-                <img src={namLaborisLogo} alt="NamLaboris" className="h-12 w-auto" />
-              </div>
-              <span className="hidden text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/80 sm:inline">
-                Est. Windhoek, Namibia
-              </span>
-            </div>
-
-            {/* crimson tab */}
-            <div className="relative bg-[var(--brand-gold)] px-6 py-4 text-white">
-              <p className="font-display text-2xl font-bold">Labour Advisory</p>
-              <p className="text-sm italic text-white/85">Specialists at your service</p>
-            </div>
-
-            <div className="space-y-4 px-6 py-6">
-              <p className="text-sm leading-relaxed text-foreground/75">
-                As labour-law specialists, NamLaboris delivers <strong className="text-[var(--brand-gold)]">current,
-                practical, and aligned</strong> guidance across the full employment lifecycle — from contracting
-                to disciplinary hearings, arbitration, and compliance.
-              </p>
-
-              <ul className="space-y-2.5">
-                {[
-                  "Disciplinary hearings & arbitrations",
-                  "Compliance audits & policy reviews",
-                  "AI-assisted labour-law research",
-                  "Accredited training programmes",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/80">
-                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[var(--brand-gold)]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="grid grid-cols-3 gap-3 border-t border-border pt-4 text-center">
-                {[
-                  { v: "20+", l: "Courses" },
-                  { v: "5", l: "Delivery Modes" },
-                  { v: "15%", l: "Group Discount" },
-                ].map((s) => (
-                  <div key={s.l}>
-                    <p className="font-display text-xl font-bold text-[var(--brand-navy-deep)]">{s.v}</p>
-                    <p className="text-[0.6rem] uppercase tracking-[0.14em] text-foreground/55">{s.l}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </div>
   );
