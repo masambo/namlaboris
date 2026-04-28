@@ -104,7 +104,7 @@ function AssistantPage() {
           </div>
         </div>
 
-        <div ref={scrollRef} className="flex-1 overflow-y-auto rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-6">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto rounded-2xl border border-border bg-card p-4 sm:p-6">
           {messages.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center">
               <span className="icon-chip size-14"><Sparkles className="size-6" /></span>
@@ -115,7 +115,7 @@ function AssistantPage() {
                   <button
                     key={s}
                     onClick={() => send(s)}
-                    className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-left text-sm text-foreground/80 transition hover:border-[var(--brand-gold)]/40 hover:bg-white/[0.06]"
+                    className="rounded-xl border border-border bg-[var(--muted)]/40 px-4 py-3 text-left text-sm text-foreground/85 transition hover:border-[var(--brand-gold)]/60 hover:bg-[var(--muted)]"
                   >
                     {s}
                   </button>
@@ -132,12 +132,12 @@ function AssistantPage() {
                   <div
                     className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                       m.role === "user"
-                        ? "bg-[var(--brand-gold)]/15 border border-[var(--brand-gold)]/25 text-foreground"
-                        : "bg-white/[0.04] border border-white/10 text-foreground/90"
+                        ? "bg-[var(--brand-gold)] text-white border border-[var(--brand-gold)]"
+                        : "bg-[var(--muted)]/50 border border-border text-foreground/90"
                     }`}
                   >
                     {m.role === "assistant" ? (
-                      <div className="prose prose-sm prose-invert max-w-none prose-headings:font-display prose-headings:text-foreground prose-strong:text-foreground prose-a:text-[var(--brand-gold-soft)]">
+                      <div className="prose prose-sm max-w-none prose-headings:font-display prose-headings:text-[var(--brand-navy-deep)] prose-strong:text-[var(--brand-navy-deep)] prose-a:text-[var(--brand-gold)]">
                         <ReactMarkdown>{m.content}</ReactMarkdown>
                       </div>
                     ) : (
@@ -149,7 +149,7 @@ function AssistantPage() {
               {sending && (
                 <div className="flex gap-3">
                   <span className="icon-chip mt-0.5 size-9 shrink-0"><Bot className="size-4" /></span>
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground/70">
+                  <div className="rounded-2xl border border-border bg-[var(--muted)]/50 px-4 py-3 text-sm text-foreground/70">
                     <span className="inline-flex items-center gap-2"><Loader2 className="size-3.5 animate-spin" /> Thinking…</span>
                   </div>
                 </div>
