@@ -59,13 +59,13 @@ function LoginPage() {
         </Link>
       </div>
 
-      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl shadow-[0_30px_80px_-32px_oklch(0_0_0_/_0.7)]">
+      <div className="w-full max-w-md rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-deep)]">
         <div className="text-center">
           <h1 className="font-display text-3xl text-foreground">Welcome back</h1>
           <p className="mt-2 text-sm text-foreground/60">Sign in to your NamLaboris workspace</p>
         </div>
 
-        <Button onClick={onGoogle} variant="glass" size="lg" className="mt-6 w-full">
+        <Button onClick={onGoogle} variant="outline" size="lg" className="mt-6 w-full">
           <svg viewBox="0 0 24 24" className="size-4" aria-hidden>
             <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.5 6.1 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/>
             <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.2 8 3l5.7-5.7C34.5 6.1 29.5 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
@@ -76,7 +76,7 @@ function LoginPage() {
         </Button>
 
         <div className="my-6 flex items-center gap-3 text-xs uppercase tracking-widest text-foreground/40">
-          <div className="h-px flex-1 bg-white/10" /> or <div className="h-px flex-1 bg-white/10" />
+          <div className="h-px flex-1 bg-border" /> or <div className="h-px flex-1 bg-border" />
         </div>
 
         <form onSubmit={onSubmit} className="space-y-4">
@@ -88,7 +88,7 @@ function LoginPage() {
             <Label htmlFor="password">Password</Label>
             <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1.5" placeholder="••••••••" />
           </div>
-          <Button type="submit" variant="gold" size="lg" className="w-full" disabled={submitting}>
+          <Button type="submit" size="lg" className="w-full bg-[var(--brand-gold)] text-white hover:brightness-110" disabled={submitting}>
             {submitting && <Loader2 className="size-4 animate-spin" />} Sign in
           </Button>
         </form>
