@@ -173,7 +173,7 @@ function AssistantPage() {
             className="flex-1 resize-none border-white/10 bg-white/[0.04]"
             disabled={sending}
           />
-          <Button type="submit" variant="gold" size="lg" disabled={sending || !input.trim()}>
+          <Button type="submit" size="lg" className="bg-[var(--brand-gold)] text-white hover:brightness-110" disabled={sending || !input.trim()}>
             <Send className="size-4" />
           </Button>
         </form>
