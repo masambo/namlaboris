@@ -30,13 +30,32 @@ import logoIlo from "@/assets/logo-ilo.png";
 import logoLawSociety from "@/assets/logo-lawsociety.jpeg";
 import logoNamibiaCoat from "@/assets/logo-namibia-coat.png";
 import { Button } from "@/components/ui/button";
+import heroHandshake from "@/assets/hero-handshake.jpg";
+import caseTrackerImg from "@/assets/case-tracker.jpg";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  LogOut,
+  User as UserIcon,
+  MessageSquare,
+  ClipboardCheck,
+  CalendarClock,
+  Award,
+} from "lucide-react";
 
 const navigationItems = [
   { label: "Home", href: "#top", active: true },
-  { label: "Services", href: "#modules" },
-  { label: "Training", href: "#training" },
-  { label: "Membership", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
+  { label: "ADR Cases", href: "#modules" },
+  { label: "Compliance Tools", href: "#compliance" },
+  { label: "Training Hub", href: "#training" },
+  { label: "Analytics", href: "#modules" },
 ];
 
 const platformModules = [
