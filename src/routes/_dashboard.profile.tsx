@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
-export const Route = createFileRoute("/profile")({
+export const Route = createFileRoute("/_dashboard/profile")({
   head: () => ({
     meta: [
       { title: "My Profile | NamLaboris" },
@@ -82,13 +82,7 @@ function ProfilePage() {
     toast.success("Profile updated");
   };
 
-  if (loading || !user) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <Loader2 className="size-6 animate-spin text-foreground/50" />
-      </div>
-    );
-  }
+
 
   const displayName = fullName || profile?.full_name || user.email || "Member";
   const initials = displayName
@@ -100,19 +94,7 @@ function ProfilePage() {
     .toUpperCase();
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-white">
-        <div className="section-wrap flex items-center justify-between py-4">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground">
-            <ArrowLeft className="size-4" /> Home
-          </Link>
-          <Button variant="outline" size="sm" onClick={() => { signOut(); navigate({ to: "/" }); }}>
-            <LogOut className="size-3.5" /> Sign out
-          </Button>
-        </div>
-      </header>
-
-      <main className="section-wrap py-12">
+    <main className="flex-1 overflow-y-auto px-8 py-12">
         <div className="mx-auto max-w-2xl">
           <div className="flex items-center gap-4">
             <Avatar className="size-16">
@@ -176,7 +158,6 @@ function ProfilePage() {
             </div>
           </form>
         </div>
-      </main>
-    </div>
+    </main>
   );
 }

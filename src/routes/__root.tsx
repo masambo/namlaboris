@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import namLaborisLogo from "@/assets/namlaboris-logo.jpg";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -31,16 +32,15 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NAMLABORIS" },
-      { name: "description", content: "Artful Brand Studio creates professional, custom SaaS landing pages and web apps with unique branding." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "NAMLABORIS" },
-      { property: "og:description", content: "Artful Brand Studio creates professional, custom SaaS landing pages and web apps with unique branding." },
+      { title: "NamLaboris | Integrated Workplace Governance" },
+      { name: "description", content: "NamLaboris is Namibia's leading AI-powered workplace governance and labour relations platform." },
+      { name: "author", content: "NamLaboris" },
+      { property: "og:title", content: "NamLaboris" },
+      { property: "og:description", content: "Integrated Workplace Governance & Labour Advisory Authority for Namibia & SADC." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "NAMLABORIS" },
-      { name: "twitter:description", content: "Artful Brand Studio creates professional, custom SaaS landing pages and web apps with unique branding." },
+      { name: "twitter:title", content: "NamLaboris" },
+      { name: "twitter:description", content: "Integrated Workplace Governance & Labour Advisory Authority for Namibia & SADC." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/x7qFiTOX3wb7k0zJbruVTfpikM33/social-images/social-1776991216176-logo.webp" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/x7qFiTOX3wb7k0zJbruVTfpikM33/social-images/social-1776991216176-logo.webp" },
     ],
@@ -48,6 +48,10 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        href: namLaborisLogo,
       },
     ],
   }),

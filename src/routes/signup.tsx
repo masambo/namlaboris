@@ -8,6 +8,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import namLaborisLogo from "@/assets/namlaboris-logo.jpg";
+import supremeCourtImg from "@/assets/supreme-court.jpg";
 
 export const Route = createFileRoute("/signup")({
   head: () => ({
@@ -29,7 +31,7 @@ function SignupPage() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!loading && user) navigate({ to: "/assistant" });
+    if (!loading && user) navigate({ to: "/dashboard" });
   }, [user, loading, navigate]);
 
   const onSubmit = async (e: FormEvent) => {
@@ -53,28 +55,29 @@ function SignupPage() {
       return;
     }
     toast.success("Account created — you can now sign in");
-    navigate({ to: "/assistant" });
+    navigate({ to: "/dashboard" });
   };
 
   const onGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${window.location.origin}/assistant` },
+      options: { redirectTo: `${window.location.origin}/dashboard` },
     });
     if (error) toast.error(error.message);
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center px-4 py-12">
+    <div className="relative flex min-h-screen items-center justify-center px-4 py-12 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url(${supremeCourtImg})` }}>
       <div className="absolute left-6 top-6">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground">
+        <Link to="/" className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white">
           <ArrowLeft className="size-4" /> Back home
         </Link>
       </div>
 
-      <div className="w-full max-w-md rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-deep)]">
+      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/95 p-8 shadow-[var(--shadow-deep)] backdrop-blur-sm">
         <div className="text-center">
-          <h1 className="font-display text-3xl text-foreground">Create your account</h1>
+          <img src={namLaborisLogo} alt="NamLaboris" className="mx-auto h-12 w-auto mb-6 rounded shadow-sm" />
+          <h1 className="font-display text-3xl text-[var(--brand-navy-deep)]">Create your account</h1>
           <p className="mt-2 text-sm text-foreground/60">Join HR & legal teams across SADC</p>
         </div>
 

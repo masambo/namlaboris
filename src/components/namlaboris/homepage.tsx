@@ -228,7 +228,7 @@ function HeroSection() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, oklch(0.985 0.003 90 / 0.92) 0%, oklch(0.985 0.003 90 / 0.78) 45%, oklch(0.985 0.003 90 / 0.95) 100%)",
+            "linear-gradient(180deg, rgba(254, 250, 246, 0.92) 0%, rgba(254, 250, 246, 0.78) 45%, rgba(254, 250, 246, 0.95) 100%)",
         }}
         aria-hidden
       />
@@ -311,7 +311,7 @@ function HeroSection() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(90deg, oklch(1 0 0 / 0.92) 0%, oklch(1 0 0 / 0.55) 60%, oklch(1 0 0 / 0.2) 100%)",
+                      "linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.55) 60%, rgba(255, 255, 255, 0.2) 100%)",
                   }}
                   aria-hidden
                 />
@@ -429,7 +429,7 @@ function HeroSection() {
             transition={{ delay: 0.3, duration: 0.7 }}
             className="hidden justify-center lg:flex"
           >
-            <div className="relative w-[280px] rounded-[2.5rem] border-[10px] border-[oklch(0.18_0.02_252)] bg-[oklch(0.18_0.02_252)] shadow-[0_30px_60px_-20px_oklch(0.22_0.06_264_/_0.5)]">
+            <div className="relative w-[280px] rounded-[2.5rem] border-[10px] border-[#000000] bg-[#000000] shadow-[0_30px_60px_-20px_rgba(30,41,59,0.5)]">
               <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black" />
               <div className="overflow-hidden rounded-[2rem] bg-white px-4 pb-5 pt-9">
                 <p className="font-display text-lg font-bold text-[var(--brand-navy-deep)]">Hello, Anna,</p>

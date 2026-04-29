@@ -10,19 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
-import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as DashboardRouteImport } from './routes/_dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardTrainingRouteImport } from './routes/_dashboard.training'
+import { Route as DashboardResearchRouteImport } from './routes/_dashboard.research'
+import { Route as DashboardProfileRouteImport } from './routes/_dashboard.profile'
+import { Route as DashboardPolicyBuilderRouteImport } from './routes/_dashboard.policy-builder'
+import { Route as DashboardDocumentsRouteImport } from './routes/_dashboard.documents'
+import { Route as DashboardDashboardRouteImport } from './routes/_dashboard.dashboard'
+import { Route as DashboardComplianceRouteImport } from './routes/_dashboard.compliance'
+import { Route as DashboardCalendarRouteImport } from './routes/_dashboard.calendar'
+import { Route as DashboardAssistantRouteImport } from './routes/_dashboard.assistant'
+import { Route as DashboardAdrCasesRouteImport } from './routes/_dashboard.adr-cases'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -30,9 +34,8 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AssistantRoute = AssistantRouteImport.update({
-  id: '/assistant',
-  path: '/assistant',
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/_dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -40,42 +43,157 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardTrainingRoute = DashboardTrainingRouteImport.update({
+  id: '/training',
+  path: '/training',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardResearchRoute = DashboardResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardProfileRoute = DashboardProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPolicyBuilderRoute = DashboardPolicyBuilderRouteImport.update({
+  id: '/policy-builder',
+  path: '/policy-builder',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardDocumentsRoute = DashboardDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardDashboardRoute = DashboardDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardComplianceRoute = DashboardComplianceRouteImport.update({
+  id: '/compliance',
+  path: '/compliance',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCalendarRoute = DashboardCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAssistantRoute = DashboardAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAdrCasesRoute = DashboardAdrCasesRouteImport.update({
+  id: '/adr-cases',
+  path: '/adr-cases',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/assistant': typeof AssistantRoute
   '/login': typeof LoginRoute
-  '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
+  '/adr-cases': typeof DashboardAdrCasesRoute
+  '/assistant': typeof DashboardAssistantRoute
+  '/calendar': typeof DashboardCalendarRoute
+  '/compliance': typeof DashboardComplianceRoute
+  '/dashboard': typeof DashboardDashboardRoute
+  '/documents': typeof DashboardDocumentsRoute
+  '/policy-builder': typeof DashboardPolicyBuilderRoute
+  '/profile': typeof DashboardProfileRoute
+  '/research': typeof DashboardResearchRoute
+  '/training': typeof DashboardTrainingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/assistant': typeof AssistantRoute
   '/login': typeof LoginRoute
-  '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
+  '/adr-cases': typeof DashboardAdrCasesRoute
+  '/assistant': typeof DashboardAssistantRoute
+  '/calendar': typeof DashboardCalendarRoute
+  '/compliance': typeof DashboardComplianceRoute
+  '/dashboard': typeof DashboardDashboardRoute
+  '/documents': typeof DashboardDocumentsRoute
+  '/policy-builder': typeof DashboardPolicyBuilderRoute
+  '/profile': typeof DashboardProfileRoute
+  '/research': typeof DashboardResearchRoute
+  '/training': typeof DashboardTrainingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/assistant': typeof AssistantRoute
+  '/_dashboard': typeof DashboardRouteWithChildren
   '/login': typeof LoginRoute
-  '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
+  '/_dashboard/adr-cases': typeof DashboardAdrCasesRoute
+  '/_dashboard/assistant': typeof DashboardAssistantRoute
+  '/_dashboard/calendar': typeof DashboardCalendarRoute
+  '/_dashboard/compliance': typeof DashboardComplianceRoute
+  '/_dashboard/dashboard': typeof DashboardDashboardRoute
+  '/_dashboard/documents': typeof DashboardDocumentsRoute
+  '/_dashboard/policy-builder': typeof DashboardPolicyBuilderRoute
+  '/_dashboard/profile': typeof DashboardProfileRoute
+  '/_dashboard/research': typeof DashboardResearchRoute
+  '/_dashboard/training': typeof DashboardTrainingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assistant' | '/login' | '/profile' | '/signup'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/adr-cases'
+    | '/assistant'
+    | '/calendar'
+    | '/compliance'
+    | '/dashboard'
+    | '/documents'
+    | '/policy-builder'
+    | '/profile'
+    | '/research'
+    | '/training'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/login' | '/profile' | '/signup'
-  id: '__root__' | '/' | '/assistant' | '/login' | '/profile' | '/signup'
+  to:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/adr-cases'
+    | '/assistant'
+    | '/calendar'
+    | '/compliance'
+    | '/dashboard'
+    | '/documents'
+    | '/policy-builder'
+    | '/profile'
+    | '/research'
+    | '/training'
+  id:
+    | '__root__'
+    | '/'
+    | '/_dashboard'
+    | '/login'
+    | '/signup'
+    | '/_dashboard/adr-cases'
+    | '/_dashboard/assistant'
+    | '/_dashboard/calendar'
+    | '/_dashboard/compliance'
+    | '/_dashboard/dashboard'
+    | '/_dashboard/documents'
+    | '/_dashboard/policy-builder'
+    | '/_dashboard/profile'
+    | '/_dashboard/research'
+    | '/_dashboard/training'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AssistantRoute: typeof AssistantRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   LoginRoute: typeof LoginRoute
-  ProfileRoute: typeof ProfileRoute
   SignupRoute: typeof SignupRoute
 }
 
@@ -88,13 +206,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -102,11 +213,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/assistant': {
-      id: '/assistant'
-      path: '/assistant'
-      fullPath: '/assistant'
-      preLoaderRoute: typeof AssistantRouteImport
+    '/_dashboard': {
+      id: '/_dashboard'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -116,14 +227,113 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_dashboard/training': {
+      id: '/_dashboard/training'
+      path: '/training'
+      fullPath: '/training'
+      preLoaderRoute: typeof DashboardTrainingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/research': {
+      id: '/_dashboard/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof DashboardResearchRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/profile': {
+      id: '/_dashboard/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof DashboardProfileRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/policy-builder': {
+      id: '/_dashboard/policy-builder'
+      path: '/policy-builder'
+      fullPath: '/policy-builder'
+      preLoaderRoute: typeof DashboardPolicyBuilderRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/documents': {
+      id: '/_dashboard/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DashboardDocumentsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/dashboard': {
+      id: '/_dashboard/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardDashboardRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/compliance': {
+      id: '/_dashboard/compliance'
+      path: '/compliance'
+      fullPath: '/compliance'
+      preLoaderRoute: typeof DashboardComplianceRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/calendar': {
+      id: '/_dashboard/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof DashboardCalendarRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/assistant': {
+      id: '/_dashboard/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof DashboardAssistantRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/adr-cases': {
+      id: '/_dashboard/adr-cases'
+      path: '/adr-cases'
+      fullPath: '/adr-cases'
+      preLoaderRoute: typeof DashboardAdrCasesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardAdrCasesRoute: typeof DashboardAdrCasesRoute
+  DashboardAssistantRoute: typeof DashboardAssistantRoute
+  DashboardCalendarRoute: typeof DashboardCalendarRoute
+  DashboardComplianceRoute: typeof DashboardComplianceRoute
+  DashboardDashboardRoute: typeof DashboardDashboardRoute
+  DashboardDocumentsRoute: typeof DashboardDocumentsRoute
+  DashboardPolicyBuilderRoute: typeof DashboardPolicyBuilderRoute
+  DashboardProfileRoute: typeof DashboardProfileRoute
+  DashboardResearchRoute: typeof DashboardResearchRoute
+  DashboardTrainingRoute: typeof DashboardTrainingRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAdrCasesRoute: DashboardAdrCasesRoute,
+  DashboardAssistantRoute: DashboardAssistantRoute,
+  DashboardCalendarRoute: DashboardCalendarRoute,
+  DashboardComplianceRoute: DashboardComplianceRoute,
+  DashboardDashboardRoute: DashboardDashboardRoute,
+  DashboardDocumentsRoute: DashboardDocumentsRoute,
+  DashboardPolicyBuilderRoute: DashboardPolicyBuilderRoute,
+  DashboardProfileRoute: DashboardProfileRoute,
+  DashboardResearchRoute: DashboardResearchRoute,
+  DashboardTrainingRoute: DashboardTrainingRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AssistantRoute: AssistantRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   LoginRoute: LoginRoute,
-  ProfileRoute: ProfileRoute,
   SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport

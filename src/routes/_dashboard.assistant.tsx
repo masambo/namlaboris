@@ -9,7 +9,7 @@ import { chatWithAssistant } from "@/server/ai";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
-export const Route = createFileRoute("/assistant")({
+export const Route = createFileRoute("/_dashboard/assistant")({
   head: () => ({
     meta: [
       { title: "AI Legal Assistant | NamLaboris" },
@@ -78,24 +78,7 @@ function AssistantPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Header */}
-      <header className="border-b border-white/10 bg-white/[0.02] backdrop-blur-xl">
-        <div className="section-wrap flex items-center justify-between py-4">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground">
-            <ArrowLeft className="size-4" /> Home
-          </Link>
-          <div className="flex items-center gap-2">
-            <span className="hidden text-xs text-foreground/55 sm:inline">{user.email}</span>
-            <Button variant="quiet" size="sm" onClick={() => { signOut(); navigate({ to: "/" }); }}>
-              <LogOut className="size-3.5" /> Sign out
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Chat */}
-      <main className="section-wrap flex w-full flex-1 flex-col py-6">
+    <main className="flex h-full w-full flex-col overflow-hidden px-8 py-6">
         <div className="mb-4 flex items-center gap-3">
           <span className="icon-chip size-10"><Bot className="size-5" /></span>
           <div>
@@ -177,7 +160,6 @@ function AssistantPage() {
             <Send className="size-4" />
           </Button>
         </form>
-      </main>
-    </div>
+    </main>
   );
 }

@@ -1,0 +1,13 @@
+/* Design Tokens */
+:root {
+  /* Primary brand colors */
+  --color-primary: #1e293b; /* navy */
+  --color-accent: #8b1a1a;   /* crimson */
+  --color-background: #fefaf6; /* near-white cream */
+  --color-foreground: #1a2332; /* deep navy text */
+  /* Minimal spacing and radius */
+  --spacing-unit: 0.5rem; /* 8px */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+}

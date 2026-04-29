@@ -23,13 +23,13 @@ const buttonVariants = cva(
         quiet:
           "border border-border/80 bg-card/70 text-foreground shadow-none hover:bg-secondary/70 hover:text-foreground",
         gold:
-          "text-[oklch(0.18_0.04_252)] shadow-[var(--shadow-glow)] hover:-translate-y-0.5 hover:brightness-105 [background:var(--gradient-gold)]",
+          "text-[#1a2332] shadow-[var(--shadow-glow)] hover:-translate-y-0.5 hover:brightness-105 [background:var(--gradient-gold)]",
         copper:
           "text-white shadow-[var(--shadow-panel)] hover:-translate-y-0.5 hover:brightness-105 [background:var(--gradient-copper)]",
         glass:
           "border border-white/15 bg-white/5 text-foreground backdrop-blur-md hover:bg-white/10",
         outlineGold:
-          "border border-[oklch(0.82_0.16_86_/_0.5)] bg-transparent text-[var(--brand-gold-soft)] hover:bg-[oklch(0.82_0.16_86_/_0.1)]",
+          "border border-[rgba(166,30,30,0.5)] bg-transparent text-[var(--brand-gold-soft)] hover:bg-[rgba(166,30,30,0.1)]",
       },
       size: {
         default: "h-9 px-4 py-2",

@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
-
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 import { NamLaborisHomePage } from "@/components/namlaboris/homepage";
 
 export const Route = createFileRoute("/")({
@@ -23,5 +24,16 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && user) {
+      navigate({ to: "/dashboard" });
+    }
+  }, [user, loading, navigate]);
+
+  if (loading) return null;
+
   return <NamLaborisHomePage />;
 }
